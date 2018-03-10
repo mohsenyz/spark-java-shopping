@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/admin_main.css" rel="stylesheet">
+</head>
+<body class="rtl">
+
+<div id="main-navbar" class="w-100 fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">پنل مدیریت</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">صفحه ی اصلی </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">آمار</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت کاربران</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت محصولات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">کارت های تخفیف</a>
+                </li>
+            </ul>
+            <button class="btn btn-primary my-2 my-sm-0 mr-4" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+            <button class="btn btn-danger my-2 my-sm-0 mr-1" type="submit">
+                خروج
+                <i class="fas fa-power-off fas-m"></i>
+            </button>
+        </div>
+    </nav>
+</div>
+<div class="container mh-100vh my-5">
+
+<br/><br/>
+    <div id="accordion">
+        #foreach($mCat in $cats.entrySet())
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h6 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()" aria-expanded="true" aria-controls="$mCat.key.getId()">
+                        <span>$mCat.key.getName()</span>
+                    </button>
+                    <button class="btn btn-danger float-left mr-1 delete" data-id="$mCat.key.getId()">
+                        <i class="fas fas-m fa-trash ml-1"></i>
+                        حذف
+                    </button>
+                    <button class="btn btn-success float-left" data-name="$mCat.key.getName()" data-id="$mCat.key.getId()" data-toggle="modal" data-target="#editCategoryModal">
+                        <i class="fas fas-m fa-edit ml-1"></i>
+                        ویرایش
+                    </button>
+                </h6>
+            </div>
+
+            <div id="$mCat.key.getId()" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body p-0">
+                    <ul class="list-group m-0 p-0">
+                        #foreach($cCat in $mCat.value)
+                        <li class="list-group-item">
+                            <span class="fas-m">$cCat.getName()</span>
+                            <button class="btn btn-sm btn-danger float-left mr-1 delete" data-id="$cCat.getId()">
+                                <i class="fas fas-m fa-trash ml-1"></i>
+                                حذف
+                            </button>
+                            <button class="btn btn-sm btn-success float-left" data-name="$cCat.getName()" data-id="$cCat.getId()" data-parent-id="$cCat.getParentId()" data-toggle="modal" data-target="#editCategoryModal">
+                                <i class="fas fas-m fa-edit ml-1"></i>
+                                ویرایش
+                            </button>
+                        </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        </div>
+        #end
+
+    </div>
+    <div class="row my-2">
+        <div class="col-12">
+            <button class="btn btn-primary float-left" id="add">
+                افزودن جدید
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">ویرایش</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">نام:</label>
+                        <input type="text" class="form-control" id="category-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">زیر مجموعه ی:</label>
+                        <input type="text" class="form-control" id="child-of">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+                <button type="button" class="btn btn-success" id="save-cat-changes">ثبت تغییرات</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="selectCategoryModal" tabindex="-1" role="dialog" aria-labelledby="selectCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="selectCategoryModalLabel">ویرایش</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    #foreach($mCat in $cats.entrySet())
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h6 class="mb-0 select-cat">
+                                    <button class="btn btn-link" data-toggle="collapse" data-id="$mCat.key.getId()" data-name="$mCat.key.getName()" data-target="modal-${mCat.key.getId()}" aria-expanded="true" aria-controls="modal-${mCat.key.getId()}">
+                                        <span>$mCat.key.getName()</span>
+                                    </button>
+                                </h6>
+                            </div>
+
+                            <div id="modal-${mCat.key.getId()}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <ul class="list-group m-0 p-0">
+                                        #foreach($cCat in $mCat.value)
+                                            <li class="list-group-item select-cat">
+                                                <span class="fas-m" data-id="$cCat.getId()" data-name="$cCat.getName()">$cCat.getName()</span>
+                                            </li>
+                                        #end
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    #end
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<footer class="text-center bg-dark p-4">
+    <span class="text-white fas-m">
+        تهیه شده توسط دالیا جوان اردیبهشت
+    </span>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel();
+        $(".select-cat").on('click', function() {
+            var id = $(this).children().attr('data-id');
+            var name = $(this).children().attr('data-name');
+            $("#editCategoryModal").attr('data-parent-id', id);
+            $("#editCategoryModal #child-of").val(name);
+            $("#selectCategoryModal").modal('hide');
+        });
+        $("#save-cat-changes").on('click', function () {
+            var modal =  $("#editCategoryModal");
+            $.ajax({
+                method: "POST",
+                url: "/admin/categories",
+                data: {
+                    id: modal.attr('data-id'),
+                    name: modal.find("#category-name").val(),
+                    parentId: modal.attr('data-parent-id')
+                }
+            }).done(function( msg ) {
+                window.location.reload(false);
+            }).fail(function() {
+                alert("Error occured");
+            });
+        });
+        $(".delete").on('click', function () {
+            $.ajax({
+                method: "DELETE",
+                url: "/admin/categories?id=" + $(this).attr('data-id')
+            }).done(function( msg ) {
+                window.location.reload(false);
+            }).fail(function() {
+                alert("Error occured");
+            });
+        });
+        $("#add").on('click', function () {
+            $("#editCategoryModal").modal('show');
+        });
+        $('#editCategoryModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var name = button.data('name');
+            var parentId = button.data('parent-id');
+            var modal = $(this);
+            modal.attr('data-parent-id', parentId);
+            modal.attr('data-id', id);
+            modal.find('#category-name').val(name);
+            if (parentId != null) {
+                var parentIdObj = $("button[data-id='" + parentId + "']");
+                if (parentIdObj != null) {
+                    modal.find("#child-of").val(parentIdObj.data('name'));
+                }
+            }
+            if (button.attr("id") == "add") {
+                modal.find("#child-of").val(null);
+            }
+            modal.find("#child-of").on('focus', function() {
+                modal.hide();
+                $('#selectCategoryModal').modal('show');
+                $('#selectCategoryModal').on('hide.bs.modal', function() {
+                    modal.show();
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

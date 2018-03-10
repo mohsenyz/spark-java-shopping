@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</head>
+<body class="rtl">
+
+<div id="main-navbar" class="w-100 fixed-top bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#">برند فروشگاه</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">خانه </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">تماس با ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ورود یا ثبت نام</a>
+                </li>
+            </ul>
+            <button class="btn btn-success my-2 my-sm-0 mr-5" type="submit">
+                سبد خرید
+                <i class="fas fa-shopping-cart fas-m"></i>
+            </button>
+            <button class="btn btn-primary my-2 my-sm-0 mr-1" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="w-100 pr-0 pr-md-5 pt-1" id="category-container">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-utensils ml-1"></i>
+                مواد غذایی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۳</button>
+            </div>
+        </div>
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-home ml-1"></i>
+                لوازم خانگی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">Something else here</button>
+            </div>
+        </div>
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-tv ml-1"></i>
+                لوازم الکترونیکی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">Something else here</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mh-100vh">
+    <div class="row my-md-3 my-5 mr-md-3">
+        <div class="col col-md-3">
+            <div class="card">
+                <div class="card-header p-0 bg-light">
+                    <button class="btn btn-light w-100 p-2">
+                        <i class="fa fas-m fa-filter ml-1"></i>
+                        فیلتر محصولات
+                    </button>
+                </div>
+                <div class="card-body p-1">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header p-0 bg-primary" id="headingOne">
+                                <button class="btn btn-sm btn-primary w-100 p-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="fa fas-m fa-dollar-sign ml-1"></i>
+                                    بر اساس برند
+                                </button>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card my-2">
+                            <div class="card-header p-0" id="headingThree">
+                                <button class="btn btn-sm btn-danger w-100 p-2 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <i class="fa fas-m fa-industry ml-1"></i>
+                                    بر اساس قیمت
+                                </button>
+                            </div>
+                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body pb-0">
+                                    <input id="price" type="text" class="w-75 pr-5" value=""/>
+                                    <div class="row my-1">
+                                        <div class="col col-6 text-right">
+                                            <span class="badge badge-pill badge-info small">۰ تومان</span>
+                                        </div>
+                                        <div class="col-6 text-left">
+                                            <span class="badge badge-pill badge-info small">۱۰۰۰۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <button type="button" class="btn btn-sm btn-success w-100 my-1">
+                                            از قیمت
+                                            <span class="badge badge-light" id="from-price-label">
+                                                0
+                                                تومان
+                                            </span>
+                                            تا قیمت
+                                            <span class="badge badge-light" id="to-price-label">
+                                                1000000
+                                                تومان
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-9">
+            <div class="row ml-md-1 ml-0">
+
+
+
+
+
+
+                <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="1">
+                    <div class="card p-0">
+                        <img class="card-img-top w-100" src="image/test.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">
+                                محصول شماره ۱
+                                <span class="badge badge-success fas-m">موجود</span>
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush p-0">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-4">
+                                        قیمت :
+                                    </div>
+                                    <div class="col text-left text-success pl-0" style="position: relative;">
+                                        <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">1800 تومان</del>
+                                        <b style="position: absolute; top: -5px; left: 4px;">25000 تومان</b>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item text-center pb-1 social-group">
+                                <i class="fas fas-m fa-share-alt mb-1 mr-2"></i>
+                                <i class="socicon socicon-twitter mr-2"></i>
+                                <i class="socicon socicon-google mr-2"></i>
+                                <i class="fas fas-m fa-heart mb-1 mr-2" id="like"></i>
+                            </li>
+                        </ul>
+                        <div class="card-footer p-0">
+                            <button class="btn btn-primary w-100" id="add_to_sc">
+                                <i class="fas fas-m fa-plus mr-1"></i>
+                                افزودن به سبد خرید
+                                <div class="badge badge-pill badge-light" id="count">0 عدد</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark p-4">
+    <span class="text-white fas-m">
+        تهیه شده توسط دالیا جوان اردیبهشت
+    </span>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script src="js/like.js"></script>
+<script src="js/shop_card.js"></script>
+<script>
+    $(document).ready(function () {
+        window.priceSlider = $("#price").slider({
+            min: 0,
+            max: 1000000,
+            value: [0, 1000000],
+            rtl: true
+        }).on('slide', onPriceChange)
+            .data('slider');
+
+        $("#like").on('click', function () {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            if (Likes.hasLiked(productId)) {
+                Likes.unlike(productId);
+                $(this).removeClass("text-danger");
+            } else {
+                Likes.like(productId);
+                $(this).addClass("text-danger");
+            }
+        });
+
+        $("#like").each(function () {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            if (!Likes.hasLiked(productId)) {
+                $(this).removeClass("text-danger");
+            } else {
+                $(this).addClass("text-danger");
+            }
+        });
+
+        $("#add_to_sc").on('click', function () {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            ShopCard.inc(productId);
+            $(this).find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
+        });
+
+
+        $("#add_to_sc").each(function () {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            $(this).find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
+        });
+    });
+    function onPriceChange() {
+        $("#from-price-label").html(priceSlider.getValue()[0] + ' تومان');
+        $("#to-price-label").html(priceSlider.getValue()[1] + ' تومان');
+    }
+
+
+</script>
+</body>
+</html>

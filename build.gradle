@@ -1,0 +1,40 @@
+group 'com.mphj.freelancer'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Shopping jar',
+                'Implementation-Version': version,
+                'Main-Class': 'com.mphj.freelancer.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.redisson:redisson:3.6.1'
+    compile 'com.google.guava:guava:24.0-jre'
+    compile "org.slf4j:slf4j-api:1.6.1"
+    compile "org.slf4j:slf4j-simple:1.6.1"
+    compile "com.sparkjava:spark-core:2.7.1"
+    compile "com.sparkjava:spark-template-velocity:2.7.1"
+    compile 'com.zaxxer:HikariCP:2.7.8'
+    compile 'mysql:mysql-connector-java:5.1.39'
+    compile 'org.hibernate:hibernate-hikaricp:5.2.10.Final'
+    compile 'org.hibernate:hibernate-core:5.2.10.Final'
+    compile 'com.mashape.unirest:unirest-java:1.4.9'
+    compile 'org.apache.httpcomponents:httpclient:4.3.6'
+    compile 'org.apache.httpcomponents:httpasyncclient:4.0.2'
+    compile 'org.apache.httpcomponents:httpmime:4.3.6'
+    compile 'org.json:json:20140107'
+}

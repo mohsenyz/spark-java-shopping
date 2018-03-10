@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="product" data-product-id="1" data-product-price="25000">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/flexslider.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</head>
+<body class="rtl">
+
+<div id="main-navbar" class="w-100 fixed-top bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#">برند فروشگاه</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">خانه </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">تماس با ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ورود یا ثبت نام</a>
+                </li>
+            </ul>
+            <button class="btn btn-success my-2 my-sm-0 mr-5" type="submit">
+                سبد خرید
+                <i class="fas fa-shopping-cart fas-m"></i>
+            </button>
+            <button class="btn btn-primary my-2 my-sm-0 mr-1" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="w-100 pr-0 pr-md-5 pt-1" id="category-container">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-utensils ml-1"></i>
+                مواد غذایی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۳</button>
+            </div>
+        </div>
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-home ml-1"></i>
+                لوازم خانگی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">Something else here</button>
+            </div>
+        </div>
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fas-m fa-tv ml-1"></i>
+                لوازم الکترونیکی
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
+                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
+                <button class="dropdown-item btn-sm" type="button">Something else here</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mh-100vh" id="product-container">
+    <div class="row">
+        <div class="col col-md-7 pt-3 pr-4">
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        نام محصول
+                        <span class="badge badge-success">موجود</span>
+                    </h5>
+                    <p class="card-text">
+                        توضیحات محصول
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush pl-0">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-12">
+                                ویژگی ۱
+                                <span class="float-left">متن ویژگی</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-12">
+                                ویژگی ۱
+                                <span class="float-left">متن ویژگی</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-12">
+                                ویژگی ۱
+                                <span class="float-left">متن ویژگی</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">
+                                قیمت
+                            </div>
+                            <div class="col text-left text-success ml-2" style="position: relative;">
+                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">1800 تومان</del>
+                                <b style="position: absolute; top: -5px; left: 4px;">25000 تومان</b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-center pb-1 social-group">
+                        <i class="fas fas-m fa-share-alt mb-1 mr-2"></i>
+                        <i class="socicon socicon-twitter mr-2"></i>
+                        <i class="socicon socicon-google mr-2"></i>
+                        <i class="fas fas-m fa-heart mb-1 mr-2" id="like"></i>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card w-100 mt-2">
+                <ul class="list-group list-group-flush pl-0">
+                    <li class="list-group-item bg-success text-white">
+                        <div class="row">
+                            <div class="col-4">
+                                تعداد
+                            </div>
+                            <div class="col text-left pl-3" style="position: relative;" id="info-count">
+                                ۶ عدد
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-success text-white">
+                        <div class="row">
+                            <div class="col-4">
+                                قیمت کل
+                            </div>
+                            <div class="col text-left pl-3" style="position: relative;">
+                                <b id="total-price">250000 تومان</b>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col col-12">
+                    <button class="btn btn-dark" id="inc">
+                        <i class="fas fas-m fa-caret-up mr-1"></i>
+                        افزایش
+                    </button>
+                    <span class="badge badge-success" style="font-size: 1.5em;" id="count">0</span>
+                    <button class="btn btn-dark" id="dec">
+                        <i class="fas fas-m fa-caret-down mr-1"></i>
+                        کاهش
+                    </button>
+                    <button class="btn btn-primary float-left" id="add-to-sc">
+                        <i class="fas fas-m fa-plus mr-1"></i>
+                        افزودن به سبد خرید
+                        <div class="badge badge-pill badge-light" id="btn-count">0 عدد</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-5 pt-3 pl-4" dir="ltr">
+            <div class="card">
+                <div class="flexslider mb-0">
+                    <ul class="slides">
+                        <li data-thumb="image/test.jpg">
+                            <img src="image/test.jpg" />
+                        </li>
+                        <li data-thumb="image/test.jpg">
+                            <img src="image/test.jpg" />
+                        </li>
+                        <li data-thumb="image/test.jpg">
+                            <img src="image/test.jpg" />
+                        </li>
+                        <li data-thumb="image/test.jpg">
+                            <img src="image/test.jpg" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-dark p-4 mt-4">
+    <span class="text-white fas-m">
+        تهیه شده توسط دالیا جوان اردیبهشت
+    </span>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flexslider.js"></script>
+<!--script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script src="js/like.js"></script>
+<script src="js/shop_card.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+
+
+        function prepare() {
+            var meta = $("meta[name='product']");
+            var productId = meta.attr("data-product-id");
+            var productPrice = parseInt(meta.attr("data-product-price"));
+            var count = ShopCard.get(productId)["count"];
+            $("#count").html(count);
+            $("#info-count, #btn-count").html(count + " " + "عدد");
+            $("#total-price").html((count * productPrice) + " " + "تومان");
+            if (!Likes.hasLiked(productId)) {
+                $("#like").removeClass("text-danger");
+            } else {
+                $("#like").addClass("text-danger");
+            }
+        }
+
+
+        $("#add-to-sc, #inc").on('click', function () {
+            var meta = $("meta[name='product']");
+            var productId = meta.attr("data-product-id");
+            ShopCard.inc(productId);
+            prepare();
+        });
+
+        $("#like").on('click', function () {
+            var meta = $("meta[name='product']");
+            var productId = meta.attr("data-product-id");
+            if (Likes.hasLiked(productId)) {
+                Likes.unlike(productId);
+                $(this).removeClass("text-danger");
+            } else {
+                Likes.like(productId);
+                $(this).addClass("text-danger");
+            }
+        });
+
+        $("#dec").on('click', function () {
+            var meta = $("meta[name='product']");
+            var productId = meta.attr("data-product-id");
+            ShopCard.dec(productId);
+            prepare();
+        });
+
+        prepare();
+    });
+</script>
+</body>
+</html>
