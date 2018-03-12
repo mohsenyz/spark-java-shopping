@@ -3,6 +3,7 @@ package com.mphj.freelancer.repository;
 import com.mphj.freelancer.repository.models.Category;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
@@ -11,34 +12,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CategoryDao {
+public class CategoryDao extends BaseDao {
 
-    private Session session;
-
-    public CategoryDao (Session session) {
-        this.session = session;
+    public CategoryDao (SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
 
     public void save(Category category) {
-        Transaction tr = session.beginTransaction();
         if (category.getId() == 0) {
-            session.save(category);
+            super.save(category);
         } else {
-            session.update(category);
+            super.update(category);
         }
-        tr.commit();
     }
 
-
-    public void delete(Category category) {
-        Transaction tr = session.beginTransaction();
-        session.delete(category);
-        tr.commit();
-    }
 
 
     public Map<Category, List<Category>> getAll() {
+        Session session = sessionFactory.getCurrentSession();
         Transaction tr = session.beginTransaction();
         Query query = session.createQuery("FROM Category c");
         List<Category> list = query.getResultList();
@@ -59,5 +51,16 @@ public class CategoryDao {
         }
         tr.commit();
         return map;
+    }
+
+
+    public Category findById(int categoryId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM Category C WHERE C.id = :id");
+        query.setParameter("id", categoryId);
+        Category category = (Category) query.getSingleResult();
+        session.getTransaction().commit();
+        return category;
     }
 }
