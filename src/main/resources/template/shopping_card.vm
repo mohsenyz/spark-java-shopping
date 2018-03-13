@@ -63,75 +63,54 @@
     </div>
 </div>
 <div class="container-fluid mh-100vh">
-    <div class="row my-md-3 my-5 mr-md-3">
-        <div class="col col-md-3">
-            <div class="card">
-                <div class="card-header p-0 bg-light">
-                    <button class="btn btn-light w-100 p-2">
-                        <i class="fa fas-m fa-filter ml-1"></i>
-                        فیلتر محصولات
-                    </button>
-                </div>
-                <div class="card-body p-1">
-                    <div id="accordion">
-                        <div class="card">
-                            <div class="card-header p-0 bg-primary" id="headingOne">
-                                <button class="btn btn-sm btn-primary w-100 p-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="fa fas-m fa-dollar-sign ml-1"></i>
-                                    بر اساس برند
-                                </button>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body">
-                                </div>
-                            </div>
+    <div class="row">
+        <div class="col col-12">
+            <form class="p-3 m-4 border-success border">
+                <div class="row">
+                    <div class="col col-12 col-md-4">
+                        <div class="form-group">
+                            <label>نام کامل</label>
+                            <input class="form-control" placeholder="نام کامل">
                         </div>
-                        <div class="card my-2">
-                            <div class="card-header p-0" id="headingThree">
-                                <button class="btn btn-sm btn-danger w-100 p-2 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <i class="fa fas-m fa-industry ml-1"></i>
-                                    بر اساس قیمت
-                                </button>
-                            </div>
-                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
-                                <div class="card-body pb-0">
-                                    <input id="price" type="text" class="w-75 pr-5" value=""/>
-                                    <div class="row my-1">
-                                        <div class="col col-6 text-right">
-                                            <span class="badge badge-pill badge-info small">۰ تومان</span>
-                                        </div>
-                                        <div class="col-6 text-left">
-                                            <span class="badge badge-pill badge-info small">۱۰۰۰۰۰۰ تومان</span>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center">
-                                        <button type="button" class="btn btn-sm btn-success w-100 my-1">
-                                            از قیمت
-                                            <span class="badge badge-light" id="from-price-label">
-                                                0
-                                                تومان
-                                            </span>
-                                            تا قیمت
-                                            <span class="badge badge-light" id="to-price-label">
-                                                1000000
-                                                تومان
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col col-12 col-md-4">
+                        <div class="form-group">
+                            <label>شماره تلفن</label>
+                            <input class="form-control" placeholder="شماره تلفن">
+                        </div>
+                    </div>
+                    <div class="col col-12 col-md-4">
+                        <div class="form-group">
+                            <label>ایمیل</label>
+                            <input class="form-control" placeholder="ایمیل">
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col col-12 col-md-6">
+                        <div class="form-group">
+                            <label>آدرس کامل</label>
+                            <textarea class="form-control" placeholder="آدرس کامل"></textarea>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                        <div class="form-group">
+                            <label>توضیحات</label>
+                            <textarea class="form-control" placeholder="توضیحات"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 col-md-12">
+                        <button type="submit" class="btn btn-primary float-left">پرداخت</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="col col-md-9">
-            <div class="row ml-md-1 ml-0">
-
-
-
-
+    </div>
+    <div class="row">
+        <div class="col col-md-12 pr-5 pl-5">
+            <div class="row">
                 #foreach($product in $products)
                     <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="$product.getId()">
                         <div class="card p-0">
@@ -164,6 +143,16 @@
                                     <i class="socicon socicon-google mr-2"></i>
                                     <i class="fas fas-m fa-heart mb-1 mr-2 like"></i>
                                 </li>
+                                <li class="list-group-item text-center pb-1 social-group bg-dark pt-0">
+                                    <div class="row">
+                                        <button class="btn btn-dark btn-sm col col-6 inc">
+                                            <i class="fas fas-m fa-plus"></i>
+                                        </button>
+                                        <button class="btn btn-dark btn-sm col col-6 dec">
+                                            <i class="fas fas-m fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </li>
                             </ul>
                             <div class="card-footer p-0">
                                 <button class="btn btn-primary w-100 add_to_sc">
@@ -192,22 +181,15 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!--script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-<script src="js/like.js"></script>
-<script src="js/shop_card.js"></script>
+<script src="/js/like.js"></script>
+<script src="/js/shop_card.js"></script>
 <script>
     $(document).ready(function () {
-        window.priceSlider = $("#price").slider({
-            min: 0,
-            max: 1000000,
-            value: [0, 1000000],
-            rtl: true
-        }).on('slide', onPriceChange)
-            .data('slider');
 
-        $(".like").on('click', function (event) {
+        $(".like").click(function (event) {
             event.preventDefault();
             var parent = $(this).closest(".product");
             var productId = parent.attr("data-product-id");
@@ -230,7 +212,7 @@
             }
         });
 
-        $(".add_to_sc").on('click', function (event) {
+        $(".add_to_sc").click(function (event) {
             event.preventDefault();
             var parent = $(this).closest(".product");
             var productId = parent.attr("data-product-id");
@@ -238,6 +220,22 @@
             $(this).find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
         });
 
+
+        $(".inc").click(function (event) {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            ShopCard.inc(productId);
+            parent.find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
+        });
+
+
+
+        $(".dec").click(function (event) {
+            var parent = $(this).closest(".product");
+            var productId = parent.attr("data-product-id");
+            ShopCard.dec(productId);
+            parent.find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
+        });
 
         $(".add_to_sc").each(function () {
             var parent = $(this).closest(".product");

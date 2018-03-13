@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="product" data-product-id="1" data-product-price="25000">
+    <meta name="product" data-product-id="$product.getId()" data-product-price="$product.getProductPrice().getActualPrice()">
     <link rel="icon" href="">
 
     <title>Carousel Template for Bootstrap</title>
 
-    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/flexslider.css" rel="stylesheet">
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/flexslider.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </head>
 <body class="rtl">
+
 
 <div id="main-navbar" class="w-100 fixed-top bg-white">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -49,39 +50,19 @@
         </div>
     </nav>
     <div class="w-100 pr-0 pr-md-5 pt-1" id="category-container">
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fas-m fa-utensils ml-1"></i>
-                مواد غذایی
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
-                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
-                <button class="dropdown-item btn-sm" type="button">مواد ۳</button>
+        #foreach($mCat in $cats.entrySet())
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fas-m fa-utensils ml-1"></i>
+                    $mCat.key.getName()
+                </button>
+                <div class="dropdown-menu">
+                    #foreach($cCat in $mCat.value)
+                        <a href="/products?cat_id=$cCat.getId()" class="dropdown-item btn-sm" type="button">$cCat.getName()</a>
+                    #end
+                </div>
             </div>
-        </div>
-        <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fas-m fa-home ml-1"></i>
-                لوازم خانگی
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
-                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
-                <button class="dropdown-item btn-sm" type="button">Something else here</button>
-            </div>
-        </div>
-        <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fas-m fa-tv ml-1"></i>
-                لوازم الکترونیکی
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item btn-sm" type="button">مواد ۱</button>
-                <button class="dropdown-item btn-sm" type="button">مواد ۲</button>
-                <button class="dropdown-item btn-sm" type="button">Something else here</button>
-            </div>
-        </div>
+        #end
     </div>
 </div>
 <div class="container-fluid mh-100vh" id="product-container">
@@ -90,46 +71,36 @@
             <div class="card w-100">
                 <div class="card-body">
                     <h5 class="card-title">
-                        نام محصول
-                        <span class="badge badge-success">موجود</span>
+                        $product.getName()
+                        #if($product.getCount() != 0)
+                            <span class="badge badge-success">موجود</span>
+                        #else
+                            <span class="badge badge-danger">ناموجود</span>
+                        #end
                     </h5>
                     <p class="card-text">
-                        توضیحات محصول
+                        $product.getDescription()
                     </p>
                 </div>
                 <ul class="list-group list-group-flush pl-0">
+                    #foreach($prop in $product.getProductProperties())
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col col-12">
-                                ویژگی ۱
-                                <span class="float-left">متن ویژگی</span>
+                                $prop.getpKey()
+                                <span class="float-left">$prop.getpValue()</span>
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-12">
-                                ویژگی ۱
-                                <span class="float-left">متن ویژگی</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-12">
-                                ویژگی ۱
-                                <span class="float-left">متن ویژگی</span>
-                            </div>
-                        </div>
-                    </li>
+                    #end
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
                                 قیمت
                             </div>
                             <div class="col text-left text-success ml-2" style="position: relative;">
-                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">1800 تومان</del>
-                                <b style="position: absolute; top: -5px; left: 4px;">25000 تومان</b>
+                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice() تومان </del>
+                                <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice() تومان </b>
                             </div>
                         </div>
                     </li>
@@ -191,17 +162,28 @@
                 <div class="flexslider mb-0">
                     <ul class="slides">
                         <li data-thumb="image/test.jpg">
-                            <img src="image/test.jpg" />
+                            <img src="$product.getMainImage()" />
                         </li>
-                        <li data-thumb="image/test.jpg">
-                            <img src="image/test.jpg" />
-                        </li>
-                        <li data-thumb="image/test.jpg">
-                            <img src="image/test.jpg" />
-                        </li>
-                        <li data-thumb="image/test.jpg">
-                            <img src="image/test.jpg" />
-                        </li>
+                        #if($product.getSlider1Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider1Image()" />
+                            </li>
+                        #end
+                        #if($product.getSlider2Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider2Image()" />
+                            </li>
+                        #end
+                        #if($product.getSlider3Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider3Image()" />
+                            </li>
+                        #end
+                        #if($product.getSlider4Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider4Image()" />
+                            </li>
+                        #end
                     </ul>
                 </div>
             </div>
@@ -217,12 +199,12 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.flexslider.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.flexslider.js"></script>
 <!--script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-<script src="js/like.js"></script>
-<script src="js/shop_card.js"></script>
+<script src="/js/like.js"></script>
+<script src="/js/shop_card.js"></script>
 <script>
     $(document).ready(function () {
         $('.flexslider').flexslider({

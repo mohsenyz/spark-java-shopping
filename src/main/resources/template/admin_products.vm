@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/admin_main.css" rel="stylesheet">
+</head>
+<body class="rtl">
+
+<div id="main-navbar" class="w-100 fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">پنل مدیریت</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">صفحه ی اصلی </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">آمار</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت کاربران</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت محصولات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">کارت های تخفیف</a>
+                </li>
+            </ul>
+            <button class="btn btn-primary my-2 my-sm-0 mr-4" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+            <button class="btn btn-danger my-2 my-sm-0 mr-1" type="submit">
+                خروج
+                <i class="fas fa-power-off fas-m"></i>
+            </button>
+        </div>
+    </nav>
+</div>
+<div class="container mh-100vh my-5">
+
+    <br/><br/>
+    <div id="accordion">
+        #foreach($mCat in $cats.entrySet())
+            <div class="card">
+                <div class="card-header" id="headingOne" onclick="redirectWithQuery({'cat' : $mCat.key.getId()})">
+                    <h6 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()" aria-expanded="true" aria-controls="$mCat.key.getId()">
+                            <span>$mCat.key.getName()</span>
+                        </button>
+                    </h6>
+                </div>
+
+                <div id="$mCat.key.getId()" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body p-2">
+                        <ul class="list-group m-0 p-0">
+                            #foreach($cCat in $mCat.value)
+                                <li class="list-group-item" onclick="redirectWithQuery({'cat' : $cCat.getId()})">
+                                    <span class="fas-m">$cCat.getName()</span>
+                                </li>
+                            #end
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        #end
+
+    </div>
+
+
+    <div class="row p-2">
+        #foreach($product in $products)
+        <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="$product.getId()" onclick="window.location.href = '/admin/products/new?id=$product.getId()'">
+            <div class="card p-0">
+                <img class="card-img-top w-100" src="$product.getMainImage()" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title mb-0">
+                        $product.getName()
+                        #if ($product.getCount() != 0)
+                        <span class="badge badge-success fas-m">موجود</span>
+                        #else
+                        <span class="badge badge-danger fas-m">ناموجود</span>
+                        #end
+                    </h5>
+                </div>
+                <ul class="list-group list-group-flush p-0">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">
+                                قیمت :
+                            </div>
+                            <div class="col text-left text-success pl-0" style="position: relative;">
+                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice()</del>
+                                <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice()</b>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item text-center pb-1 social-group">
+                        <i class="fas fas-m fa-share-alt mb-1 mr-2"></i>
+                        <i class="socicon socicon-twitter mr-2"></i>
+                        <i class="socicon socicon-google mr-2"></i>
+                        <i class="fas fas-m fa-heart mb-1 mr-2" id="like"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        #end
+    </div>
+
+
+</div>
+
+<footer class="text-center bg-dark p-4">
+    <span class="text-white fas-m">
+        تهیه شده توسط دالیا جوان اردیبهشت
+    </span>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script>
+    $(document).ready(function () {
+    });
+
+    function redirectWithQuery(opt) {
+        window.location.href = window.location.pathname+"?"+$.param(opt);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="product" data-product-id="1" data-product-price="25000">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/flexslider.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</head>
+<body class="rtl">
+
+
+<div id="main-navbar" class="w-100 fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">پنل مدیریت</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">صفحه ی اصلی </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">آمار</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت کاربران</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">مدیریت محصولات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">کارت های تخفیف</a>
+                </li>
+            </ul>
+            <button class="btn btn-primary my-2 my-sm-0 mr-4" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+            <button class="btn btn-danger my-2 my-sm-0 mr-1" type="submit">
+                خروج
+                <i class="fas fa-power-off fas-m"></i>
+            </button>
+        </div>
+    </nav>
+</div>
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="id" value="$product.getId()">
+<div class="container-fluid mh-100vh pt-5" id="product-container">
+    <div class="row mt-4 pr-3">
+        <div class="col col-12">
+            <h5>ایجاد محصول جدید</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-7 pt-3 pr-4">
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="form-group">
+                        #if($product.getName())
+                            <input class="form-control" placeholder="نام محصول" name="name" value="$product.getName()">
+                        #else
+                            <input class="form-control" placeholder="نام محصول" name="name">
+                        #end
+                    </div>
+                    <div class="form-group">
+                        #if($product.getDescription())
+                            <textarea class="form-control" placeholder="توضیحات" name="description">$product.getDescription()</textarea>
+                        #else
+                            <textarea class="form-control" placeholder="توضیحات" name="description"></textarea>
+                        #end
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush pl-0">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-6">
+                                <b class="text-primary pt-3">قیمت</b>
+                            </div>
+                            <div class="col col-6">
+                                <input type="text" name="price" class="form-control float-left" placeholder="به تومان" value="$product.getProductPrice().getPrice()">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-6">
+                                <b class="text-danger pt-3">تخفیف</b>
+                            </div>
+                            <div class="col col-6">
+                                <input type="text" name="off" class="form-control float-left" placeholder="به درصد" value="$product.getProductPrice().getOff()">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-6">
+                                <b class="text-info pt-3">تعداد</b>
+                            </div>
+                            <div class="col col-6">
+                                <input type="text" name="count" class="form-control float-left" placeholder="موجودی" value="$product.getCount()">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-6">
+                                <b class="text-warning pt-3">دسته بندی</b>
+                            </div>
+                            <div class="col col-6">
+                                <select name="category" class="form-control" value="$product.getCategory().getId()">
+                                    #foreach($mCat in $cats.entrySet())
+                                    <optgroup label="$mCat.key.getName()">
+                                        #foreach($cCat in $mCat.value)
+                                        <option value="$cCat.getId()">$cCat.getName()</option>
+                                        #end
+                                    </optgroup>
+                                    #end
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    #set($i = 0)
+                    #foreach($prop in $product.getProductProperties())
+                    <li class="list-group-item" id="first-property">
+                        <div class="row">
+                            <div class="col col-5">
+                                <input type="text" id="key" name="key-$i" class="form-control" placeholder="ویژگی" value="$prop.getpKey()">
+                            </div>
+                            <div class="col col-6">
+                                <input type="text" id="value" name="value-$i" class="form-control float-left" placeholder="مقدار ویژگی" value="$prop.getpValue()">
+                            </div>
+                            <div class="col col-1">
+                                <button class="btn btn-danger float-left delete-property">
+                                    <i class="fas-m fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                    #set($i = $i + 1)
+                    #end
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-12">
+                                <button type="button" class="btn btn-primary float-left" id="add-property">
+                                    <i class="fas fas-m fa-plus"></i>
+                                    افزودن ویژگی
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col col-12">
+                                <button class="btn btn-success w-100" type="submit" id="add-property">
+                                    تایید
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col col-md-5 pt-3 pl-4" dir="ltr">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>عکس اصلی</label>
+                        <input type="file" class="form-control" name="main-image">
+                    </div>
+                    <div class="form-group">
+                        <label>عکس اسلایدر</label>
+                        <input type="file" class="form-control" name="image-1">
+                    </div>
+                    <div class="form-group">
+                        <label>عکس اسلایدر</label>
+                        <input type="file" class="form-control" name="image-2">
+                    </div>
+                    <div class="form-group">
+                        <label>عکس اسلایدر</label>
+                        <input type="file" class="form-control" name="image-3">
+                    </div>
+                    <div class="form-group">
+                        <label>عکس اسلایدر</label>
+                        <input type="file" class="form-control" name="image-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<footer class="text-center bg-dark p-4 mt-4">
+    <span class="text-white fas-m">
+        تهیه شده توسط دالیا جوان اردیبهشت
+    </span>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.flexslider.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script src="/js/like.js"></script>
+<script src="/js/shop_card.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".delete-property").click(function () {
+            $(this).closest("li").hide();
+        });
+        var i = 0;
+        $("#add-property").click(function () {
+            element = $("#first-property");
+            newElement = element.clone();
+            element.after(newElement);
+            newElement.show();
+            newElement.attr("id", null);
+            ++i;
+            newElement.find("#key").attr("name", "key-" + i);
+            newElement.find("#value").attr("name", "value-" + i);
+
+            newElement.find("button").click(function () {
+                $(this).closest("li").remove();
+            });
+        });
+    });
+</script>
+</body>
+</html>

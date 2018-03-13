@@ -51,7 +51,7 @@
             </button>
             <div class="dropdown-menu">
             #foreach($cCat in $mCat.value)
-                <button class="dropdown-item btn-sm" type="button">$cCat.getName()</button>
+                <a href="/products?cat_id=$cCat.getId()" class="dropdown-item btn-sm" type="button">$cCat.getName()</a>
             #end
             </div>
         </div>
