@@ -21,7 +21,7 @@ public class AdminCategoryController {
             return (String) Cache.get(requestHash);
         }
 
-        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory().getCurrentSession());
+        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory());
         Map<String, Object> map = new HashMap<>();
         map.put("cats", categoryDao.getAll());
 
@@ -55,7 +55,7 @@ public class AdminCategoryController {
         category.setName(name);
         category.setParentId(parentId);
 
-        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory().getCurrentSession());
+        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory());
 
         if (id == null) {
             categoryDao.save(category);
@@ -71,7 +71,7 @@ public class AdminCategoryController {
     public static String delete(Request request, Response response) {
 
         Integer id = Integer.parseInt(request.queryParams("id"));
-        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory().getCurrentSession());
+        CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory());
 
         Category category = new Category();
         category.setId(id);
