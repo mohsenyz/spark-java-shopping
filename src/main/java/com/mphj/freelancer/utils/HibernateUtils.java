@@ -27,6 +27,7 @@ public class HibernateUtils {
                 sources.addAnnotatedClass(Category.class);
                 sources.addAnnotatedClass(Product.class);
                 sources.addAnnotatedClass(ProductProperty.class);
+                sources.addAnnotatedClass(ProductPrice.class);
                 sources.addAnnotatedClass(ShoppingCard.class);
                 sources.addAnnotatedClass(ShoppingCardProduct.class);
                 sources.addAnnotatedClass(User.class);
