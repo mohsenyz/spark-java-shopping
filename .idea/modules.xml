@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/SampleCode-Java/jzarinpal-client/src/main/main.iml" filepath="$USER_HOME$/SampleCode-Java/jzarinpal-client/src/main/main.iml" />
-      <module fileurl="file://$USER_HOME$/SampleCode-Java/jzarinpal-server/src/main/main1.iml" filepath="$USER_HOME$/SampleCode-Java/jzarinpal-server/src/main/main1.iml" />
-      <module fileurl="file://$USER_HOME$/SampleCode-Java/jzarinpal-domain/src/main/main2.iml" filepath="$USER_HOME$/SampleCode-Java/jzarinpal-domain/src/main/main2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopping.iml" filepath="$PROJECT_DIR$/.idea/modules/shopping.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopping_main.iml" filepath="$PROJECT_DIR$/.idea/modules/shopping_main.iml" group="shopping" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopping_test.iml" filepath="$PROJECT_DIR$/.idea/modules/shopping_test.iml" group="shopping" />
-      <module fileurl="file://$USER_HOME$/SampleCode-Java/jzarinpal-server/src/test/test.iml" filepath="$USER_HOME$/SampleCode-Java/jzarinpal-server/src/test/test.iml" />
-      <module fileurl="file://$USER_HOME$/SampleCode-Java/jzarinpal-client/src/test/test1.iml" filepath="$USER_HOME$/SampleCode-Java/jzarinpal-client/src/test/test1.iml" />
     </modules>
   </component>
 </project>

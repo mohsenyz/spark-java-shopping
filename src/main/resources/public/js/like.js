@@ -2,7 +2,7 @@
 
     function prepareCookies() {
         if (!Cookies.getJSON('data_likes')) {
-            Cookies.set('data_likes', {});
+            Cookies.set('data_likes', {}, { expires: 365 });
         }
     }
 
@@ -28,7 +28,7 @@
         },
 
         set : function (productLikes) {
-            Cookies.set('data_likes', productLikes);
+            Cookies.set('data_likes', productLikes, { expires: 365 });
         },
 
         all : function () {
