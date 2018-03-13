@@ -1,0 +1,44 @@
+<div id="main-navbar" class="w-100 fixed-top bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#">برند فروشگاه</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">خانه </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">تماس با ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ورود یا ثبت نام</a>
+                </li>
+            </ul>
+            <a class="btn btn-success my-2 my-sm-0 mr-5" href="/shc" target="_blank" type="submit">
+                سبد خرید
+                <i class="fas fa-shopping-cart fas-m"></i>
+            </a>
+            <button class="btn btn-primary my-2 my-sm-0 mr-1" type="submit">
+                ناحیه کاربری
+                <i class="fas fa-user fas-m"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="w-100 pr-0 pr-md-5 pt-1" id="category-container">
+        #foreach($mCat in $cats.entrySet())
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fas-m fa-utensils ml-1"></i>
+                    $mCat.key.getName()
+                </button>
+                <div class="dropdown-menu">
+                    #foreach($cCat in $mCat.value)
+                        <a href="/products?cat_id=$cCat.getId()" class="dropdown-item btn-sm" type="button">$cCat.getName()</a>
+                    #end
+                </div>
+            </div>
+        #end
+    </div>
+</div>

@@ -23,15 +23,18 @@ public class ShoppingCardController {
 
     public static String view(Request request, Response response) {
 
-        String jsonData = URLDecoder.decode(request.cookie("data_sc"));
+        String jsonData = null;
+        try {
+            jsonData = URLDecoder.decode(request.cookie("data_sc"));
+        } catch (Exception e) {
+
+        }
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, ShoppingCardObject> shoppingCardObjects = null;
-        System.out.println(jsonData);
+        Map<String, ShoppingCardObject> shoppingCardObjects = new HashMap<>();;
         try {
             shoppingCardObjects = objectMapper.readValue(jsonData, new TypeReference<Map<String, ShoppingCardObject>>(){});
-        } catch (IOException e) {
-            response.redirect("/");
-            return null;
+        } catch (Exception e) {
+
         }
 
         ProductDao productDao = new ProductDao(HibernateUtils.getSessionFactory());
