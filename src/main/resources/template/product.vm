@@ -192,6 +192,9 @@
         $("#dec").on('click', function () {
             var meta = $("meta[name='product']");
             var productId = meta.attr("data-product-id");
+            var count = ShopCard.get(productId)["count"];
+            if (count <= 0)
+                return;
             ShopCard.dec(productId);
             prepare();
         });

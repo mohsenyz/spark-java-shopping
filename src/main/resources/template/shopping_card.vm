@@ -216,6 +216,8 @@
 
 
         $(".dec").click(function (event) {
+            if (ShopCard.get(productId)["count"] <= 0)
+                return;
             var parent = $(this).closest(".product");
             var productId = parent.attr("data-product-id");
             ShopCard.dec(productId);
