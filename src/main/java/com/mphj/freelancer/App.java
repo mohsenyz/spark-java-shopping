@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mphj.freelancer.config.AppConfig;
 import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
 import com.mphj.freelancer.index.ShoppingCardController;
@@ -14,6 +15,8 @@ import com.mphj.freelancer.utils.AppProperties;
 import com.mphj.freelancer.utils.Cache;
 import com.mphj.freelancer.utils.HibernateUtils;
 import com.mphj.freelancer.utils.Redis;
+import com.qmetric.spark.authentication.AuthenticationDetails;
+import com.qmetric.spark.authentication.BasicAuthenticationFilter;
 
 import static spark.Spark.*;
 
@@ -26,6 +29,12 @@ public class App {
         port(portNumber);
         staticFiles.location("/public");
 
+        before(
+                "/admin/*",
+                new BasicAuthenticationFilter(
+                        new AuthenticationDetails(AppConfig.ADMIN_USERNAME, AppConfig.ADMIN_PASSWORD)
+                )
+        );
 
         get("/", (req, resp) -> IndexController.index(req, resp));
         get("/upload/:filename", (req, resp) -> IndexController.serveUploadFiles(req, resp));

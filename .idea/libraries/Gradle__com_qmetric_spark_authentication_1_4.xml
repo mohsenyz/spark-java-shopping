@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.qmetric:spark-authentication:1.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.qmetric/spark-authentication/1.4/18c5d8bb65754bf1d5f4b509aa4e5cf28dd1ded0/spark-authentication-1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.qmetric/spark-authentication/1.4/205095bd0e15718069424b198045a545bfd9752b/spark-authentication-1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">خانه </a>
+                    <a class="nav-link" href="/">خانه </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">تماس با ما</a>
@@ -30,7 +30,7 @@
         #foreach($mCat in $cats.entrySet())
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fas-m fa-utensils ml-1"></i>
+                    <i class="fas fas-m fa-certificate ml-1"></i>
                     $mCat.key.getName()
                 </button>
                 <div class="dropdown-menu">

@@ -1,0 +1,25 @@
+language: java
+script: gradle fatJar
+services:
+- docker
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+env:
+  global:
+  - DOCKER_USER=alimohammadi340
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: YO2lCqEeLu7meiIAPepHakfv41fRltXsvX4CYGsB1iej6i79rYJ1XcKHgocCm6ZBM4AJEmjDSq30MuY/aY+V9Cn0fyG9xhYqbMkE1o+gWzigbPnHmFuNg3cFRlDdpkpLt/eMNOTTCQChBtrz5IArPrRhQzdkQiqI2NoWfiBje3jv+HXOVGdg1bV5sU0UWTTwkWdYBVr5bBvjKxneZIBl8bBLKB+IeWmPrl8/9QsbjtGrm15REiqMWwfsYYMa1Nwaipq3SgYDrAOl1crzn0OCEt99INnWLv1uXWxgR7OYK/2cwNQ4GB0RKPePNcEvryzE1PvNICIJxbin4WqXFeAx5adJTVfqOdPqKU3B1kBNBwi77RJJrkfBQEYfbddZJQ/oCKo0W17gTwsY+cuetNU/vhrHgITK7fkIlpbeUvfpc206uloyc15DgIXMkUp0a17Z8LCNYLG9OeQtLWTlggQF6PP5V2YU10zbMV58KiacY/EguxMFhXi5mXsWXzlqrS4nUtVLtsscyht97OjCmdafx617GNlZLd7+VXokSWI+bCOz/HVqhL/8u9b2OlDOdL1SE0kt/lGTL0p+atxwjOewUAc44vX0WHWkcbZ45tJnwZ6O/pdUfiY2fieHdeRC2lYD9ENYfSFlpcnp/du0vdUoCRPUYUIdu/HGvRMwAKKLMYU=
+after_success:
+- docker login quay.io -u $DOCKER_USER -p $DOCKER_PASS
+- export REPO=quay.io/alimohammadi340/shopping-server
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+  ; fi`
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker image ls
+- docker push $REPO
