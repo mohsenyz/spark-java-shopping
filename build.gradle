@@ -10,7 +10,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Shopping jar',
                 'Implementation-Version': version,
-                'Main-Class': 'com.mphj.freelancer.Main'
+                'Main-Class': 'com.mphj.freelancer.App'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
