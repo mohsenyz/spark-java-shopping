@@ -6,4 +6,4 @@ ADD build/libs/shopping-1.0-all.jar application.jar
 
 EXPOSE 80
 
-CMD java -jar application.jar
+CMD java -jar application.jar 80
