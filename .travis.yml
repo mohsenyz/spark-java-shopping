@@ -1,5 +1,5 @@
 language: java
-script: gradle fatJar
+script: gradle shadowJar
 services:
 - docker
 before_cache:

@@ -1,10 +1,27 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+    id 'java'
+}
+
 group 'com.mphj.freelancer'
 version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+mainClassName = 'com.mphj.freelancer.App'
 
 sourceCompatibility = 1.8
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources"
+        }
+    }
+}
+
 
 task fatJar(type: Jar) {
     manifest {
@@ -13,7 +30,7 @@ task fatJar(type: Jar) {
                 'Main-Class': 'com.mphj.freelancer.App'
     }
     baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }}
     with jar
 }
 repositories {

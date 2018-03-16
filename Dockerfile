@@ -2,7 +2,7 @@ FROM java:8
 
 MAINTAINER Mohsen yazdani
 
-ADD build/libs/shopping-all-1.0.jar application.jar
+ADD build/libs/shopping-1.0-all.jar application.jar
 
 EXPOSE 80
 
