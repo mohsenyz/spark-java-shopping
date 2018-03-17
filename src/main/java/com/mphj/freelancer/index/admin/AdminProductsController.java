@@ -203,7 +203,7 @@ public class AdminProductsController {
         ProductPriceDao productPriceDao = new ProductPriceDao(sessionFactory);
 
         Product product;
-        if (request.queryParams("id") != null || !request.queryParams("id").trim().equals("0") || !request.queryParams("id").isEmpty()) {
+        if (request.queryParams("id") != null && !request.queryParams("id").trim().equals("0") && !request.queryParams("id").isEmpty()) {
             product = productDao.findById(Integer.parseInt(request.queryParams("id")));
             productPropertyDao.deleteByProductId(product.getId());
         } else {

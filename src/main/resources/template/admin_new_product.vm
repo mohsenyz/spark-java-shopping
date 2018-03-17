@@ -57,7 +57,9 @@
     </nav>
 </div>
 <form method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" value="$product.getId()">
+#if ($product.getId() != 0)
+    <input type="hidden" name="id" value="$product.getId()">
+#end
 <div class="container-fluid mh-100vh pt-5" id="product-container">
     <div class="row mt-4 pr-3">
         <div class="col col-12">
@@ -133,6 +135,7 @@
                         </div>
                     </li>
                     #set($i = 0)
+                    #if ($product.getProductProperties().size() != 0)
                     #foreach($prop in $product.getProductProperties())
                     <li class="list-group-item" id="first-property">
                         <div class="row">
@@ -150,6 +153,23 @@
                         </div>
                     </li>
                     #set($i = $i + 1)
+                    #end
+                    #else
+                        <li class="list-group-item" id="first-property" style="display:none;">
+                            <div class="row">
+                                <div class="col col-5">
+                                    <input type="text" id="key" name="key-0" class="form-control" placeholder="ویژگی">
+                                </div>
+                                <div class="col col-6">
+                                    <input type="text" id="value" name="value-0" class="form-control float-left" placeholder="مقدار ویژگی">
+                                </div>
+                                <div class="col col-1">
+                                    <button class="btn btn-danger float-left delete-property">
+                                        <i class="fas-m fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
                     #end
                     <li class="list-group-item">
                         <div class="row">

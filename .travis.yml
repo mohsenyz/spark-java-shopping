@@ -1,5 +1,8 @@
 language: java
-script: gradle shadowJar
+script:
+  - rm src/main/resources/config.properties
+  - move src/main/resources/.config.properties src/main/resources/config.properties
+  - gradle shadowJar
 services:
 - docker
 before_cache:
