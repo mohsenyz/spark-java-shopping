@@ -1,7 +1,7 @@
 language: java
 script:
   - rm src/main/resources/config.properties
-  - move src/main/resources/.config.properties src/main/resources/config.properties
+  - mv src/main/resources/.config.properties src/main/resources/config.properties
   - gradle shadowJar
 services:
 - docker
