@@ -4,6 +4,9 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../..">
       <excludeFolder url="file://$MODULE_DIR$/../../.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../../.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../build" />
       <excludeFolder url="file://$MODULE_DIR$/../../out" />
     </content>

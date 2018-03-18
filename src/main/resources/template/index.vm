@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="enamad" content="130314"/>
+
     <link rel="icon" href="">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>Hyper Buy - فروشگاه آنلاین</title>
     #include("/template/cl_header_resources.html")
 </head>
 <body class="rtl">
