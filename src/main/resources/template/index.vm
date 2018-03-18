@@ -13,7 +13,7 @@
     #include("/template/cl_header_resources.html")
 </head>
 <body class="rtl">
-#parse("/template/client_header.vm")
+    #parse("/template/client_header.vm")
 <div class="container-flu id">
     <div id="main-carousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -22,14 +22,16 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block mx-auto"  style="height: calc(100vh - 100px) !important;" src="image/test.jpg" alt="First slide">
+                <img class="d-block mx-auto" style="height: calc(100vh - 100px) !important;" src="image/test.jpg"
+                     alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h4>لذت خرید را با ما تجربه کنید</h4>
                     <p>لذت خرید را با ما تجربه کنید</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block mx-auto" style="height: calc(100vh - 100px) !important;" src="image/test.jpg" alt="Third slide">
+                <img class="d-block mx-auto" style="height: calc(100vh - 100px) !important;" src="image/test.jpg"
+                     alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h4>تخفیف ویژه سامسونگ</h4>
                     <p>لذت خرید را با ما تجربه کنید</p>
@@ -53,7 +55,7 @@
     </span>
 </footer>
 
-#include("/template/client_scripts.html")
+    #include("/template/client_scripts.html")
 <script>
     $(document).ready(function () {
         $('.carousel').carousel()

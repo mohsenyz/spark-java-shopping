@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="product" data-product-id="$product.getId()" data-product-price="$product.getProductPrice().getActualPrice()">
+    <meta name="product" data-product-id="$product.getId()"
+          data-product-price="$product.getProductPrice().getActualPrice()">
     <link rel="icon" href="">
 
     <title>Carousel Template for Bootstrap</title>
     #include("/template/cl_header_resources.html")
 </head>
 <body class="rtl">
-#parse("/template/client_header.vm")
+    #parse("/template/client_header.vm")
 <div class="container-fluid mh-100vh" id="product-container">
     <div class="row">
         <div class="col col-md-7 pt-3 pr-4">
@@ -32,14 +33,14 @@
                 </div>
                 <ul class="list-group list-group-flush pl-0">
                     #foreach($prop in $product.getProductProperties())
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-12">
-                                $prop.getpKey()
-                                <span class="float-left">$prop.getpValue()</span>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-12">
+                                    $prop.getpKey()
+                                    <span class="float-left">$prop.getpValue()</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
                     #end
                     <li class="list-group-item">
                         <div class="row">
@@ -47,8 +48,11 @@
                                 قیمت
                             </div>
                             <div class="col text-left text-success ml-2" style="position: relative;">
-                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice() تومان </del>
-                                <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice() تومان </b>
+                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice()
+                                    تومان
+                                </del>
+                                <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice()
+                                    تومان </b>
                             </div>
                         </div>
                     </li>
@@ -110,26 +114,26 @@
                 <div class="flexslider mb-0">
                     <ul class="slides">
                         <li data-thumb="image/test.jpg">
-                            <img src="$product.getMainImage()" />
+                            <img src="$product.getMainImage()"/>
                         </li>
                         #if($product.getSlider1Image())
                             <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider1Image()" />
+                                <img src="$product.getSlider1Image()"/>
                             </li>
                         #end
                         #if($product.getSlider2Image())
                             <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider2Image()" />
+                                <img src="$product.getSlider2Image()"/>
                             </li>
                         #end
                         #if($product.getSlider3Image())
                             <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider3Image()" />
+                                <img src="$product.getSlider3Image()"/>
                             </li>
                         #end
                         #if($product.getSlider4Image())
                             <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider4Image()" />
+                                <img src="$product.getSlider4Image()"/>
                             </li>
                         #end
                     </ul>
@@ -145,7 +149,7 @@
     </span>
 </footer>
 
-#include("/template/client_scripts.html")
+    #include("/template/client_scripts.html")
 <script>
     $(document).ready(function () {
         $('.flexslider').flexslider({

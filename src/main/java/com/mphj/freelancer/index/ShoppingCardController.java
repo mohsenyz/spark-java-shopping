@@ -7,11 +7,12 @@ import com.mphj.freelancer.repository.CategoryDao;
 import com.mphj.freelancer.repository.ProductDao;
 import com.mphj.freelancer.repository.models.Product;
 import com.mphj.freelancer.repository.models.ShoppingCardObject;
-import com.mphj.freelancer.utils.*;
+import com.mphj.freelancer.utils.HibernateUtils;
+import com.mphj.freelancer.utils.Path;
+import com.mphj.freelancer.utils.ViewUtils;
 import spark.Request;
 import spark.Response;
 
-import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +31,11 @@ public class ShoppingCardController {
 
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, ShoppingCardObject> shoppingCardObjects = new HashMap<>();;
+        Map<String, ShoppingCardObject> shoppingCardObjects = new HashMap<>();
+        ;
         try {
-            shoppingCardObjects = objectMapper.readValue(jsonData, new TypeReference<Map<String, ShoppingCardObject>>(){});
+            shoppingCardObjects = objectMapper.readValue(jsonData, new TypeReference<Map<String, ShoppingCardObject>>() {
+            });
         } catch (Exception e) {
 
         }

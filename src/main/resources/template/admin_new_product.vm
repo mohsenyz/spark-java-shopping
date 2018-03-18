@@ -15,178 +15,189 @@
     <link href="/css/flexslider.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css"
+          rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </head>
 <body class="rtl">
 
-#parse("/template/admin_header.vm")
+    #parse("/template/admin_header.vm")
 <form method="post" enctype="multipart/form-data">
-#if ($product.getId() != 0)
-    <input type="hidden" name="id" value="$product.getId()">
-#end
-<div class="container-fluid mh-100vh pt-5" id="product-container">
-    <div class="row mt-4 pr-3">
-        <div class="col col-12">
-            <h5>ایجاد محصول جدید</h5>
+    #if ($product.getId() != 0)
+        <input type="hidden" name="id" value="$product.getId()">
+    #end
+    <div class="container-fluid mh-100vh pt-5" id="product-container">
+        <div class="row mt-4 pr-3">
+            <div class="col col-12">
+                <h5>ایجاد محصول جدید</h5>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col col-md-7 pt-3 pr-4">
-            <div class="card w-100">
-                <div class="card-body">
-                    <div class="form-group">
-                        #if($product.getName())
-                            <input class="form-control" placeholder="نام محصول" name="name" value="$product.getName()">
-                        #else
-                            <input class="form-control" placeholder="نام محصول" name="name">
-                        #end
+        <div class="row">
+            <div class="col col-md-7 pt-3 pr-4">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <div class="form-group">
+                            #if($product.getName())
+                                <input class="form-control" placeholder="نام محصول" name="name"
+                                       value="$product.getName()">
+                            #else
+                                <input class="form-control" placeholder="نام محصول" name="name">
+                            #end
+                        </div>
+                        <div class="form-group">
+                            #if($product.getDescription())
+                                <textarea class="form-control" placeholder="توضیحات"
+                                          name="description">$product.getDescription()</textarea>
+                            #else
+                                <textarea class="form-control" placeholder="توضیحات" name="description"></textarea>
+                            #end
+                        </div>
                     </div>
-                    <div class="form-group">
-                        #if($product.getDescription())
-                            <textarea class="form-control" placeholder="توضیحات" name="description">$product.getDescription()</textarea>
-                        #else
-                            <textarea class="form-control" placeholder="توضیحات" name="description"></textarea>
-                        #end
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush pl-0">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-6">
-                                <b class="text-primary pt-3">قیمت</b>
-                            </div>
-                            <div class="col col-6">
-                                <input type="text" name="price" class="form-control float-left" placeholder="به تومان" value="$product.getProductPrice().getPrice()">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-6">
-                                <b class="text-danger pt-3">تخفیف</b>
-                            </div>
-                            <div class="col col-6">
-                                <input type="text" name="off" class="form-control float-left" placeholder="به درصد" value="$product.getProductPrice().getOff()">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-6">
-                                <b class="text-info pt-3">تعداد</b>
-                            </div>
-                            <div class="col col-6">
-                                <input type="text" name="count" class="form-control float-left" placeholder="موجودی" value="$product.getCount()">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-6">
-                                <b class="text-warning pt-3">دسته بندی</b>
-                            </div>
-                            <div class="col col-6">
-                                <select name="category" class="form-control" value="$product.getCategory().getId()">
-                                    #foreach($mCat in $cats.entrySet())
-                                    <optgroup label="$mCat.key.getName()">
-                                        #foreach($cCat in $mCat.value)
-                                        <option value="$cCat.getId()">$cCat.getName()</option>
-                                        #end
-                                    </optgroup>
-                                    #end
-                                </select>
-                            </div>
-                        </div>
-                    </li>
-                    #set($i = 0)
-                    #if ($product.getProductProperties().size() != 0)
-                    #foreach($prop in $product.getProductProperties())
-                    <li class="list-group-item" id="first-property">
-                        <div class="row">
-                            <div class="col col-5">
-                                <input type="text" id="key" name="key-$i" class="form-control" placeholder="ویژگی" value="$prop.getpKey()">
-                            </div>
-                            <div class="col col-6">
-                                <input type="text" id="value" name="value-$i" class="form-control float-left" placeholder="مقدار ویژگی" value="$prop.getpValue()">
-                            </div>
-                            <div class="col col-1">
-                                <button class="btn btn-danger float-left delete-property">
-                                    <i class="fas-m fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    #set($i = $i + 1)
-                    #end
-                    #else
-                        <li class="list-group-item" id="first-property" style="display:none;">
+                    <ul class="list-group list-group-flush pl-0">
+                        <li class="list-group-item">
                             <div class="row">
-                                <div class="col col-5">
-                                    <input type="text" id="key" name="key-0" class="form-control" placeholder="ویژگی">
+                                <div class="col col-6">
+                                    <b class="text-primary pt-3">قیمت</b>
                                 </div>
                                 <div class="col col-6">
-                                    <input type="text" id="value" name="value-0" class="form-control float-left" placeholder="مقدار ویژگی">
+                                    <input type="text" name="price" class="form-control float-left"
+                                           placeholder="به تومان" value="$product.getProductPrice().getPrice()">
                                 </div>
-                                <div class="col col-1">
-                                    <button class="btn btn-danger float-left delete-property">
-                                        <i class="fas-m fas fa-trash"></i>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-6">
+                                    <b class="text-danger pt-3">تخفیف</b>
+                                </div>
+                                <div class="col col-6">
+                                    <input type="text" name="off" class="form-control float-left" placeholder="به درصد"
+                                           value="$product.getProductPrice().getOff()">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-6">
+                                    <b class="text-info pt-3">تعداد</b>
+                                </div>
+                                <div class="col col-6">
+                                    <input type="text" name="count" class="form-control float-left" placeholder="موجودی"
+                                           value="$product.getCount()">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-6">
+                                    <b class="text-warning pt-3">دسته بندی</b>
+                                </div>
+                                <div class="col col-6">
+                                    <select name="category" class="form-control" value="$product.getCategory().getId()">
+                                        #foreach($mCat in $cats.entrySet())
+                                            <optgroup label="$mCat.key.getName()">
+                                                #foreach($cCat in $mCat.value)
+                                                    <option value="$cCat.getId()">$cCat.getName()</option>
+                                                #end
+                                            </optgroup>
+                                        #end
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        #set($i = 0)
+                        #if ($product.getProductProperties().size() != 0)
+                            #foreach($prop in $product.getProductProperties())
+                                <li class="list-group-item" id="first-property">
+                                    <div class="row">
+                                        <div class="col col-5">
+                                            <input type="text" id="key" name="key-$i" class="form-control"
+                                                   placeholder="ویژگی" value="$prop.getpKey()">
+                                        </div>
+                                        <div class="col col-6">
+                                            <input type="text" id="value" name="value-$i"
+                                                   class="form-control float-left" placeholder="مقدار ویژگی"
+                                                   value="$prop.getpValue()">
+                                        </div>
+                                        <div class="col col-1">
+                                            <button class="btn btn-danger float-left delete-property">
+                                                <i class="fas-m fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                #set($i = $i + 1)
+                            #end
+                        #else
+                            <li class="list-group-item" id="first-property" style="display:none;">
+                                <div class="row">
+                                    <div class="col col-5">
+                                        <input type="text" id="key" name="key-0" class="form-control"
+                                               placeholder="ویژگی">
+                                    </div>
+                                    <div class="col col-6">
+                                        <input type="text" id="value" name="value-0" class="form-control float-left"
+                                               placeholder="مقدار ویژگی">
+                                    </div>
+                                    <div class="col col-1">
+                                        <button class="btn btn-danger float-left delete-property">
+                                            <i class="fas-m fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                        #end
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-12">
+                                    <button type="button" class="btn btn-primary float-left" id="add-property">
+                                        <i class="fas fas-m fa-plus"></i>
+                                        افزودن ویژگی
                                     </button>
                                 </div>
                             </div>
                         </li>
-                    #end
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-12">
-                                <button type="button" class="btn btn-primary float-left" id="add-property">
-                                    <i class="fas fas-m fa-plus"></i>
-                                    افزودن ویژگی
-                                </button>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col col-12">
+                                    <button class="btn btn-success w-100" type="submit" id="add-property">
+                                        تایید
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col col-12">
-                                <button class="btn btn-success w-100" type="submit" id="add-property">
-                                    تایید
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                </div>
 
-        </div>
-        <div class="col col-md-5 pt-3 pl-4" dir="ltr">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>عکس اصلی</label>
-                        <input type="file" class="form-control" name="main-image">
-                    </div>
-                    <div class="form-group">
-                        <label>عکس اسلایدر</label>
-                        <input type="file" class="form-control" name="image-1">
-                    </div>
-                    <div class="form-group">
-                        <label>عکس اسلایدر</label>
-                        <input type="file" class="form-control" name="image-2">
-                    </div>
-                    <div class="form-group">
-                        <label>عکس اسلایدر</label>
-                        <input type="file" class="form-control" name="image-3">
-                    </div>
-                    <div class="form-group">
-                        <label>عکس اسلایدر</label>
-                        <input type="file" class="form-control" name="image-4">
+            </div>
+            <div class="col col-md-5 pt-3 pl-4" dir="ltr">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>عکس اصلی</label>
+                            <input type="file" class="form-control" name="main-image">
+                        </div>
+                        <div class="form-group">
+                            <label>عکس اسلایدر</label>
+                            <input type="file" class="form-control" name="image-1">
+                        </div>
+                        <div class="form-group">
+                            <label>عکس اسلایدر</label>
+                            <input type="file" class="form-control" name="image-2">
+                        </div>
+                        <div class="form-group">
+                            <label>عکس اسلایدر</label>
+                            <input type="file" class="form-control" name="image-3">
+                        </div>
+                        <div class="form-group">
+                            <label>عکس اسلایدر</label>
+                            <input type="file" class="form-control" name="image-4">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </form>
 <footer class="text-center bg-dark p-4 mt-4">
     <span class="text-white fas-m">
@@ -195,7 +206,9 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.flexslider.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>

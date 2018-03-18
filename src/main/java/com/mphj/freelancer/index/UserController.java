@@ -5,7 +5,6 @@ import com.mphj.freelancer.repository.models.User;
 import com.mphj.freelancer.utils.HibernateUtils;
 import com.mphj.freelancer.utils.PhoneValidator;
 import com.mphj.freelancer.utils.RandomGenerator;
-import com.mphj.freelancer.utils.ViewUtils;
 import spark.Request;
 import spark.Response;
 
@@ -35,7 +34,6 @@ public class UserController {
         userDao.save(user);
         return "200";
     }
-
 
 
     public static String verify(Request request, Response response) {

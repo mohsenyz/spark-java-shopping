@@ -13,7 +13,7 @@
     <link href="/css/admin_main.css" rel="stylesheet">
 </head>
 <body class="rtl">
-#parse("/template/admin_header.vm")
+    #parse("/template/admin_header.vm")
 <div class="container mh-100vh my-5">
 
     <br/><br/>
@@ -22,7 +22,8 @@
             <div class="card">
                 <div class="card-header" id="headingOne" onclick="redirectWithQuery({'cat' : $mCat.key.getId()})">
                     <h6 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()" aria-expanded="true" aria-controls="$mCat.key.getId()">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()"
+                                aria-expanded="true" aria-controls="$mCat.key.getId()">
                             <span>$mCat.key.getName()</span>
                         </button>
                     </h6>
@@ -47,40 +48,41 @@
 
     <div class="row p-2">
         #foreach($product in $products)
-        <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="$product.getId()" onclick="window.location.href = '/admin/products/new?id=$product.getId()'">
-            <div class="card p-0">
-                <img class="card-img-top w-100" src="$product.getMainImage()" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title mb-0">
-                        $product.getName()
-                        #if ($product.getCount() != 0)
-                        <span class="badge badge-success fas-m">موجود</span>
-                        #else
-                        <span class="badge badge-danger fas-m">ناموجود</span>
-                        #end
-                    </h5>
+            <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="$product.getId()"
+                 onclick="window.location.href = '/admin/products/new?id=$product.getId()'">
+                <div class="card p-0">
+                    <img class="card-img-top w-100" src="$product.getMainImage()" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">
+                            $product.getName()
+                            #if ($product.getCount() != 0)
+                                <span class="badge badge-success fas-m">موجود</span>
+                            #else
+                                <span class="badge badge-danger fas-m">ناموجود</span>
+                            #end
+                        </h5>
+                    </div>
+                    <ul class="list-group list-group-flush p-0">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-4">
+                                    قیمت :
+                                </div>
+                                <div class="col text-left text-success pl-0" style="position: relative;">
+                                    <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice()</del>
+                                    <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice()</b>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item text-center pb-1 social-group">
+                            <i class="fas fas-m fa-share-alt mb-1 mr-2"></i>
+                            <i class="socicon socicon-twitter mr-2"></i>
+                            <i class="socicon socicon-google mr-2"></i>
+                            <i class="fas fas-m fa-heart mb-1 mr-2" id="like"></i>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush p-0">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-4">
-                                قیمت :
-                            </div>
-                            <div class="col text-left text-success pl-0" style="position: relative;">
-                                <del style="font-size: 12px;color: #444; position: absolute; left: 4px; bottom: -10px;">$product.getProductPrice().getPrice()</del>
-                                <b style="position: absolute; top: -5px; left: 4px;">$product.getProductPrice().getActualPrice()</b>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item text-center pb-1 social-group">
-                        <i class="fas fas-m fa-share-alt mb-1 mr-2"></i>
-                        <i class="socicon socicon-twitter mr-2"></i>
-                        <i class="socicon socicon-google mr-2"></i>
-                        <i class="fas fas-m fa-heart mb-1 mr-2" id="like"></i>
-                    </li>
-                </ul>
             </div>
-        </div>
         #end
     </div>
 
@@ -94,7 +96,9 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -103,7 +107,7 @@
     });
 
     function redirectWithQuery(opt) {
-        window.location.href = window.location.pathname+"?"+$.param(opt);
+        window.location.href = window.location.pathname + "?" + $.param(opt);
     }
 </script>
 </body>

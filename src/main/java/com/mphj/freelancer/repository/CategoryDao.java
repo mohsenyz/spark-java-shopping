@@ -1,7 +1,6 @@
 package com.mphj.freelancer.repository;
 
 import com.mphj.freelancer.repository.models.Category;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,7 +13,7 @@ import java.util.Map;
 
 public class CategoryDao extends BaseDao {
 
-    public CategoryDao (SessionFactory sessionFactory) {
+    public CategoryDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
@@ -42,7 +41,6 @@ public class CategoryDao extends BaseDao {
         }
         invalidateCache();
     }
-
 
 
     public Map<Category, List<Category>> getAll() {

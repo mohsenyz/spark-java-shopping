@@ -1,10 +1,8 @@
 package com.mphj.freelancer.repository;
 
-import com.mphj.freelancer.repository.models.Product;
 import com.mphj.freelancer.repository.models.ProductProperty;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 public class ProductPropertyDao extends BaseDao<ProductProperty> {
 
 
-    public ProductPropertyDao (SessionFactory sessionFactory) {
+    public ProductPropertyDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 

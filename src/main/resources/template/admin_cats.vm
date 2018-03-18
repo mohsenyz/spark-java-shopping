@@ -14,49 +14,54 @@
 </head>
 <body class="rtl">
 
-#parse("/template/admin_header.vm")
+    #parse("/template/admin_header.vm")
 <div class="container mh-100vh my-5">
 
-<br/><br/>
+    <br/><br/>
     <div id="accordion">
         #foreach($mCat in $cats.entrySet())
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h6 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()" aria-expanded="true" aria-controls="$mCat.key.getId()">
-                        <span>$mCat.key.getName()</span>
-                    </button>
-                    <button class="btn btn-danger float-left mr-1 delete" data-id="$mCat.key.getId()">
-                        <i class="fas fas-m fa-trash ml-1"></i>
-                        حذف
-                    </button>
-                    <button class="btn btn-success float-left" data-name="$mCat.key.getName()" data-id="$mCat.key.getId()" data-toggle="modal" data-target="#editCategoryModal">
-                        <i class="fas fas-m fa-edit ml-1"></i>
-                        ویرایش
-                    </button>
-                </h6>
-            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h6 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="$mCat.key.getId()"
+                                aria-expanded="true" aria-controls="$mCat.key.getId()">
+                            <span>$mCat.key.getName()</span>
+                        </button>
+                        <button class="btn btn-danger float-left mr-1 delete" data-id="$mCat.key.getId()">
+                            <i class="fas fas-m fa-trash ml-1"></i>
+                            حذف
+                        </button>
+                        <button class="btn btn-success float-left" data-name="$mCat.key.getName()"
+                                data-id="$mCat.key.getId()" data-toggle="modal" data-target="#editCategoryModal">
+                            <i class="fas fas-m fa-edit ml-1"></i>
+                            ویرایش
+                        </button>
+                    </h6>
+                </div>
 
-            <div id="$mCat.key.getId()" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body p-2">
-                    <ul class="list-group m-0 p-0">
-                        #foreach($cCat in $mCat.value)
-                        <li class="list-group-item">
-                            <span class="fas-m">$cCat.getName()</span>
-                            <button class="btn btn-sm btn-danger float-left mr-1 delete" data-id="$cCat.getId()">
-                                <i class="fas fas-m fa-trash ml-1"></i>
-                                حذف
-                            </button>
-                            <button class="btn btn-sm btn-success float-left" data-name="$cCat.getName()" data-id="$cCat.getId()" data-parent-id="$cCat.getParentId()" data-toggle="modal" data-target="#editCategoryModal">
-                                <i class="fas fas-m fa-edit ml-1"></i>
-                                ویرایش
-                            </button>
-                        </li>
-                        #end
-                    </ul>
+                <div id="$mCat.key.getId()" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body p-2">
+                        <ul class="list-group m-0 p-0">
+                            #foreach($cCat in $mCat.value)
+                                <li class="list-group-item">
+                                    <span class="fas-m">$cCat.getName()</span>
+                                    <button class="btn btn-sm btn-danger float-left mr-1 delete"
+                                            data-id="$cCat.getId()">
+                                        <i class="fas fas-m fa-trash ml-1"></i>
+                                        حذف
+                                    </button>
+                                    <button class="btn btn-sm btn-success float-left" data-name="$cCat.getName()"
+                                            data-id="$cCat.getId()" data-parent-id="$cCat.getParentId()"
+                                            data-toggle="modal" data-target="#editCategoryModal">
+                                        <i class="fas fas-m fa-edit ml-1"></i>
+                                        ویرایش
+                                    </button>
+                                </li>
+                            #end
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
         #end
 
     </div>
@@ -72,11 +77,8 @@
 </div>
 
 
-
-
-
-
-<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,10 +108,8 @@
 </div>
 
 
-
-
-
-<div class="modal fade" id="selectCategoryModal" tabindex="-1" role="dialog" aria-labelledby="selectCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="selectCategoryModal" tabindex="-1" role="dialog" aria-labelledby="selectCategoryModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,37 +119,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                    #foreach($mCat in $cats.entrySet())
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h6 class="mb-0 select-cat">
-                                    <button class="btn btn-link" data-toggle="collapse" data-id="$mCat.key.getId()" data-name="$mCat.key.getName()" data-target="modal-${mCat.key.getId()}" aria-expanded="true" aria-controls="modal-${mCat.key.getId()}">
-                                        <span>$mCat.key.getName()</span>
-                                    </button>
-                                </h6>
-                            </div>
+                #foreach($mCat in $cats.entrySet())
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h6 class="mb-0 select-cat">
+                                <button class="btn btn-link" data-toggle="collapse" data-id="$mCat.key.getId()"
+                                        data-name="$mCat.key.getName()" data-target="modal-${mCat.key.getId()}"
+                                        aria-expanded="true" aria-controls="modal-${mCat.key.getId()}">
+                                    <span>$mCat.key.getName()</span>
+                                </button>
+                            </h6>
+                        </div>
 
-                            <div id="modal-${mCat.key.getId()}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body p-0">
-                                    <ul class="list-group m-0 p-0">
-                                        #foreach($cCat in $mCat.value)
-                                            <li class="list-group-item select-cat">
-                                                <span class="fas-m" data-id="$cCat.getId()" data-name="$cCat.getName()">$cCat.getName()</span>
-                                            </li>
-                                        #end
-                                    </ul>
-                                </div>
+                        <div id="modal-${mCat.key.getId()}" class="collapse show" aria-labelledby="headingOne"
+                             data-parent="#accordion">
+                            <div class="card-body p-0">
+                                <ul class="list-group m-0 p-0">
+                                    #foreach($cCat in $mCat.value)
+                                        <li class="list-group-item select-cat">
+                                            <span class="fas-m" data-id="$cCat.getId()"
+                                                  data-name="$cCat.getName()">$cCat.getName()</span>
+                                        </li>
+                                    #end
+                                </ul>
                             </div>
                         </div>
-                    #end
+                    </div>
+                #end
 
             </div>
         </div>
     </div>
 </div>
-
-
-
 
 
 <footer class="text-center bg-dark p-4">
@@ -159,14 +160,16 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script>
     $(document).ready(function () {
         $('.carousel').carousel();
-        $(".select-cat").on('click', function() {
+        $(".select-cat").on('click', function () {
             var id = $(this).children().attr('data-id');
             var name = $(this).children().attr('data-name');
             $("#editCategoryModal").attr('data-parent-id', id);
@@ -174,7 +177,7 @@
             $("#selectCategoryModal").modal('hide');
         });
         $("#save-cat-changes").on('click', function () {
-            var modal =  $("#editCategoryModal");
+            var modal = $("#editCategoryModal");
             $.ajax({
                 method: "POST",
                 url: "/admin/categories",
@@ -183,9 +186,9 @@
                     name: modal.find("#category-name").val(),
                     parentId: modal.attr('data-parent-id')
                 }
-            }).done(function( msg ) {
+            }).done(function (msg) {
                 window.location.reload(false);
-            }).fail(function() {
+            }).fail(function () {
                 alert("Error occured");
             });
         });
@@ -193,9 +196,9 @@
             $.ajax({
                 method: "DELETE",
                 url: "/admin/categories?id=" + $(this).attr('data-id')
-            }).done(function( msg ) {
+            }).done(function (msg) {
                 window.location.reload(false);
-            }).fail(function() {
+            }).fail(function () {
                 alert("Error occured");
             });
         });
@@ -220,10 +223,10 @@
             if (button.attr("id") == "add") {
                 modal.find("#child-of").val(null);
             }
-            modal.find("#child-of").on('focus', function() {
+            modal.find("#child-of").on('focus', function () {
                 modal.hide();
                 $('#selectCategoryModal').modal('show');
-                $('#selectCategoryModal').on('hide.bs.modal', function() {
+                $('#selectCategoryModal').on('hide.bs.modal', function () {
                     modal.show();
                 });
             });

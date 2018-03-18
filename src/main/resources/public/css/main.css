@@ -24,17 +24,14 @@ span, div, textarea, input, button, i, b, s, h1, h2, h3, h4, h5, h6 {
     font-family: 'Iran', sans-serif;
 }
 
-
 .fas-m {
     vertical-align: middle;
 }
-
 
 #main-navbar {
     box-shadow: 0px 0px 7px #444;
     z-index: 800 !important;
 }
-
 
 .container-fluid {
     z-index: 700 !important;
@@ -45,7 +42,6 @@ span, div, textarea, input, button, i, b, s, h1, h2, h3, h4, h5, h6 {
     background-color: #5adb5e;
     background-image: url("../image/binding-dark.png");
 }
-
 
 .carousel-item {
     text-shadow: 0px 0px 15px #000;
@@ -95,7 +91,6 @@ span, div, textarea, input, button, i, b, s, h1, h2, h3, h4, h5, h6 {
     margin-right: 10px;
 }
 
-
 .social-group > i {
     transition: 0.3s;
     padding: 5px;
@@ -106,11 +101,9 @@ span, div, textarea, input, button, i, b, s, h1, h2, h3, h4, h5, h6 {
     color: #28a745;
 }
 
-
 .social-group > i.socicon-twitter:hover {
     color: #297cde;
 }
-
 
 .social-group > i.socicon-google:hover {
     color: #bd2130;

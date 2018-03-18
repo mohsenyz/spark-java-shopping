@@ -1,11 +1,8 @@
 package com.mphj.freelancer.repository;
 
-import com.mphj.freelancer.repository.models.Category;
 import com.mphj.freelancer.repository.models.Product;
-import com.mphj.freelancer.repository.models.ProductPrice;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import java.util.List;

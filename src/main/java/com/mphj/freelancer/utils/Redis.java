@@ -1,6 +1,5 @@
 package com.mphj.freelancer.utils;
 
-import com.mphj.freelancer.config.AppConfig;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;

@@ -3,15 +3,13 @@ package com.mphj.freelancer.repository;
 import com.mphj.freelancer.repository.models.ProductPrice;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import javax.persistence.Query;
-import java.util.List;
 
 public class ProductPriceDao extends BaseDao<ProductPrice> {
 
 
-    public ProductPriceDao (SessionFactory sessionFactory) {
+    public ProductPriceDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 

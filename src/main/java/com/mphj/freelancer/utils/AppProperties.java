@@ -21,8 +21,7 @@ public class AppProperties {
             } else {
                 prop.load(AppProperties.class.getClassLoader().getResourceAsStream(AppConfig.DEFAULT_CONFIG_FILE));
             }
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }

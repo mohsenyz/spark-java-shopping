@@ -9,34 +9,34 @@ public class PhoneValidator {
     private int matchIndex = 0;
     private String regExp;
 
-    private PhoneValidator(String regExp, int matchIndex){
+    private PhoneValidator(String regExp, int matchIndex) {
         this.matchIndex = matchIndex;
         this.regExp = regExp;
     }
 
-    public String getValid(String object){
+    public String getValid(String object) {
         Pattern p = Pattern.compile(this.regExp);
         Matcher m = p.matcher(object);
-        while(m.find()){
+        while (m.find()) {
             if (m.group(this.matchIndex) != null && !m.group(this.matchIndex).isEmpty())
                 return m.group(this.matchIndex);
         }
         return null;
     }
 
-    public static PhoneValidator newMobileNumberValidator(){
+    public static PhoneValidator newMobileNumberValidator() {
         return new PhoneValidator(MOBILE_NUMBER, 2);
     }
 
     public boolean isValid(String object) {
-        try{
+        try {
             Pattern p = Pattern.compile(this.regExp);
             Matcher m = p.matcher(object);
-            while(m.find()){
+            while (m.find()) {
                 if (m.group(this.matchIndex) != null && !m.group(this.matchIndex).isEmpty())
                     return true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return false;

@@ -1,9 +1,5 @@
 package com.mphj.freelancer;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mphj.freelancer.config.AppConfig;
 import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
@@ -51,7 +47,6 @@ public class App {
         get("/admin/products/new", (req, resp) -> AdminProductsController.newProduct(req, resp));
         post("/admin/products/new", (req, resp) -> AdminProductsController.postProduct(req, resp));
     }
-
 
 
     public static void initRedis() {

@@ -48,7 +48,6 @@ public class ProductsListController {
     }
 
 
-
     public static String view(Request request, Response response) {
         String requestHash = Hash.hashRequest(request);
 

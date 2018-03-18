@@ -9,25 +9,19 @@ import com.mphj.freelancer.repository.models.Product;
 import com.mphj.freelancer.repository.models.ProductPrice;
 import com.mphj.freelancer.repository.models.ProductProperty;
 import com.mphj.freelancer.utils.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import spark.Request;
 import spark.Response;
 import spark.utils.IOUtils;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletException;
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public class AdminProductsController {
 
@@ -100,7 +94,6 @@ public class AdminProductsController {
     }
 
 
-
     public static String postProduct(Request request, Response response) {
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 
@@ -148,7 +141,7 @@ public class AdminProductsController {
 
         String mainImage = null;
         try (InputStream is = request.raw().getPart("main-image").getInputStream()) {
-            if (request.raw().getPart("main-image").getSize() ==0) {
+            if (request.raw().getPart("main-image").getSize() == 0) {
                 request.raw().getPart("main-image").delete();
             } else {
                 String fileName = UUID.randomUUID().toString() + request.raw().getPart("main-image").getSubmittedFileName();
@@ -167,7 +160,7 @@ public class AdminProductsController {
         String image1 = null, image2 = null, image3 = null, image4 = null;
         for (int i = 1; i < 5; i++) {
             try (InputStream is = request.raw().getPart("image-" + i).getInputStream()) {
-                if (request.raw().getPart("image-" + i).getSize() ==0) {
+                if (request.raw().getPart("image-" + i).getSize() == 0) {
                     request.raw().getPart("image-" + i).delete();
                     continue;
                 }
@@ -248,7 +241,6 @@ public class AdminProductsController {
         response.redirect("/admin/products");
         return null;
     }
-
 
 
 }

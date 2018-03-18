@@ -12,7 +12,7 @@
     #include("/template/cl_header_resources.html")
 </head>
 <body class="rtl">
-#parse("/template/client_header.vm")
+    #parse("/template/client_header.vm")
 <div class="container-fluid mh-100vh">
     <div class="row my-md-3 my-5 mr-md-3">
         <div class="col col-md-3">
@@ -27,25 +27,30 @@
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header p-0 bg-primary" id="headingOne">
-                                <button class="btn btn-sm btn-primary w-100 p-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-sm btn-primary w-100 p-2" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fa fas-m fa-dollar-sign ml-1"></i>
                                     بر اساس برند
                                 </button>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                 data-parent="#accordion">
                                 <div class="card-body">
                                 </div>
                             </div>
                         </div>
                         <div class="card my-2">
                             <div class="card-header p-0" id="headingThree">
-                                <button class="btn btn-sm btn-danger w-100 p-2 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-sm btn-danger w-100 p-2 collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
                                     <i class="fa fas-m fa-industry ml-1"></i>
                                     بر اساس قیمت
                                 </button>
                             </div>
-                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                 data-parent="#accordion">
                                 <div class="card-body pb-0">
                                     <input id="price" type="text" class="w-75 pr-5" value=""/>
                                     <div class="row my-1">
@@ -84,10 +89,13 @@
 
 
                 #foreach($product in $products)
-                    <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product" data-product-id="$product.getId()">
+                    <div class="col col-md-3 col-12 pr-md-1 pl-md-1 pr-0 pl-0 pb-2 product"
+                         data-product-id="$product.getId()">
                         <div class="card p-0">
-                            <img class="card-img-top w-100" src="$product.getMainImage()" alt="Card image cap" onclick="window.location.href = '/products/view?id=$product.getId()'">
-                            <div class="card-body" onclick="window.location.href = '/products/view?id=$product.getId()'">
+                            <img class="card-img-top w-100" src="$product.getMainImage()" alt="Card image cap"
+                                 onclick="window.location.href = '/products/view?id=$product.getId()'">
+                            <div class="card-body"
+                                 onclick="window.location.href = '/products/view?id=$product.getId()'">
                                 <h5 class="card-title mb-0">
                                     $product.getName()
                                     #if ($product.getCount() != 0)
@@ -127,9 +135,6 @@
                     </div>
                 #end
 
-
-
-
             </div>
         </div>
     </div>
@@ -140,7 +145,7 @@
         تهیه شده توسط دالیا جوان اردیبهشت
     </span>
 </footer>
-#include("/template/client_scripts.html")
+    #include("/template/client_scripts.html")
 <script>
     $(document).ready(function () {
         window.priceSlider = $("#price").slider({
@@ -149,7 +154,7 @@
             value: [0, 1000000],
             rtl: true
         }).on('slide', onPriceChange)
-            .data('slider');
+                .data('slider');
 
         $(".like").on('click', function (event) {
             event.preventDefault();
@@ -189,6 +194,7 @@
             $(this).find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
         });
     });
+
     function onPriceChange() {
         $("#from-price-label").html(priceSlider.getValue()[0] + ' تومان');
         $("#to-price-label").html(priceSlider.getValue()[1] + ' تومان');

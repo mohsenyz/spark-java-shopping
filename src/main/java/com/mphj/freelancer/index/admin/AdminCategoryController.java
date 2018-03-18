@@ -67,7 +67,6 @@ public class AdminCategoryController {
     }
 
 
-
     public static String delete(Request request, Response response) {
 
         Integer id = Integer.parseInt(request.queryParams("id"));
