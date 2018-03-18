@@ -19,17 +19,35 @@ public class CategoryDao extends BaseDao {
     }
 
 
+    private static Map<Category, List<Category>> cachedMap = null;
+
+    public static Map<Category, List<Category>> getCache() {
+        return cachedMap;
+    }
+
+    public static void setCache(Map<Category, List<Category>> map) {
+        cachedMap = map;
+    }
+
+    public static void invalidateCache() {
+        cachedMap = null;
+    }
+
+
     public void save(Category category) {
         if (category.getId() == 0) {
             super.save(category);
         } else {
             super.update(category);
         }
+        invalidateCache();
     }
 
 
 
     public Map<Category, List<Category>> getAll() {
+        if (getCache() != null)
+            return getCache();
         Session session = sessionFactory.getCurrentSession();
         Transaction tr = session.beginTransaction();
         Query query = session.createQuery("FROM Category c");
@@ -50,6 +68,7 @@ public class CategoryDao extends BaseDao {
                 map.get(mapHelper.get(category.getParentId())).add(category);
         }
         tr.commit();
+        setCache(map);
         return map;
     }
 

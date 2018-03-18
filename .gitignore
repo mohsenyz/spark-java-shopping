@@ -1,1 +1,6 @@
 upload/
+bin/
+.vscode/
+.settings/
+.classpath
+.project
