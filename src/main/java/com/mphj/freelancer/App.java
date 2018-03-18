@@ -5,6 +5,7 @@ import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
 import com.mphj.freelancer.index.ShoppingCardController;
 import com.mphj.freelancer.index.admin.AdminCategoryController;
+import com.mphj.freelancer.index.admin.AdminGiftCardsController;
 import com.mphj.freelancer.index.admin.AdminIndexController;
 import com.mphj.freelancer.index.admin.AdminProductsController;
 import com.mphj.freelancer.mocks.MockedRLocalCache;
@@ -48,6 +49,9 @@ public class App {
         get("/admin/products", AdminProductsController::index);
         get("/admin/products/new", AdminProductsController::newProduct);
         post("/admin/products/new", AdminProductsController::postProduct);
+
+        get("/admin/giftcards", AdminGiftCardsController::index);
+        post("/admin/giftcards", AdminGiftCardsController::postGiftcard);
     }
 
 

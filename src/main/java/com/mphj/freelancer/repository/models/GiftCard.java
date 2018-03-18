@@ -4,7 +4,7 @@ package com.mphj.freelancer.repository.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "deliverer")
+@Table(name = "gift_card")
 public class GiftCard {
 
     @Id
@@ -12,10 +12,11 @@ public class GiftCard {
     private int id;
 
     private String serial;
-    private boolean isUsed;
     private long createdAt;
-    private double value;
+    private int value;
     private long expiredAt;
+    private int initialValue;
+    private String description;
 
     public int getId() {
         return id;
@@ -33,14 +34,6 @@ public class GiftCard {
         this.serial = serial;
     }
 
-    public boolean isUsed() {
-        return isUsed;
-    }
-
-    public void setUsed(boolean used) {
-        isUsed = used;
-    }
-
     public long getCreatedAt() {
         return createdAt;
     }
@@ -49,11 +42,11 @@ public class GiftCard {
         this.createdAt = createdAt;
     }
 
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -63,5 +56,23 @@ public class GiftCard {
 
     public void setExpiredAt(long expiredAt) {
         this.expiredAt = expiredAt;
+    }
+
+
+    public int getInitialValue() {
+        return initialValue;
+    }
+
+    public void setInitialValue(int initialValue) {
+        this.initialValue = initialValue;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
