@@ -13,42 +13,7 @@
     <link href="/css/admin_main.css" rel="stylesheet">
 </head>
 <body class="rtl">
-
-<div id="main-navbar" class="w-100 fixed-top bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">پنل مدیریت</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">صفحه ی اصلی </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">آمار</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">مدیریت کاربران</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">مدیریت محصولات</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">کارت های تخفیف</a>
-                </li>
-            </ul>
-            <button class="btn btn-primary my-2 my-sm-0 mr-4" type="submit">
-                ناحیه کاربری
-                <i class="fas fa-user fas-m"></i>
-            </button>
-            <button class="btn btn-danger my-2 my-sm-0 mr-1" type="submit">
-                خروج
-                <i class="fas fa-power-off fas-m"></i>
-            </button>
-        </div>
-    </nav>
-</div>
+#parse("/template/admin_header.vm")
 <div class="container mh-100vh my-5">
 
     <br/><br/>
