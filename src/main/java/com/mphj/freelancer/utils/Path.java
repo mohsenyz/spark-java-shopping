@@ -15,6 +15,7 @@ public class Path {
 
         public static final String INDEX = TEMPLATE_PATH + "index.vm";
         public static final String ADMIN_MANAGE_CATEGORIES = TEMPLATE_PATH + "admin_cats.vm";
+        public static final String ADMIN_INDEX = TEMPLATE_PATH + "admin.vm";
         public static final String ADMIN_LIST_PRODUCTS = TEMPLATE_PATH + "admin_products.vm";
         public static final String ADMIN_NEW_PRODUCT = TEMPLATE_PATH + "admin_new_product.vm";
         public static final String LIST_PRODUCTS = TEMPLATE_PATH + "product_list.vm";

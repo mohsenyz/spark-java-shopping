@@ -143,11 +143,7 @@
     </div>
 </div>
 
-<footer class="text-center bg-dark p-4 mt-4">
-    <span class="text-white fas-m">
-        تهیه شده توسط دالیا جوان اردیبهشت
-    </span>
-</footer>
+    #parse("/template/footer.vm")
 
     #include("/template/client_scripts.html")
 <script>

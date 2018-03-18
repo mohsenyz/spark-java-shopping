@@ -89,11 +89,7 @@
 
 </div>
 
-<footer class="text-center bg-dark p-4">
-    <span class="text-white fas-m">
-        تهیه شده توسط دالیا جوان اردیبهشت
-    </span>
-</footer>
+#parse("/template/footer.vm")
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

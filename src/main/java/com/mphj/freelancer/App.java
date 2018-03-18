@@ -5,6 +5,7 @@ import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
 import com.mphj.freelancer.index.ShoppingCardController;
 import com.mphj.freelancer.index.admin.AdminCategoryController;
+import com.mphj.freelancer.index.admin.AdminIndexController;
 import com.mphj.freelancer.index.admin.AdminProductsController;
 import com.mphj.freelancer.mocks.MockedRLocalCache;
 import com.mphj.freelancer.utils.AppProperties;
@@ -32,20 +33,21 @@ public class App {
                 )
         );
 
-        get("/", (req, resp) -> IndexController.index(req, resp));
-        get("/upload/:filename", (req, resp) -> IndexController.serveUploadFiles(req, resp));
-        get("/products", (req, resp) -> ProductsListController.index(req, resp));
-        get("/products/view", (req, resp) -> ProductsListController.view(req, resp));
-        get("/shc", (req, resp) -> ShoppingCardController.view(req, resp));
+        get("/", IndexController::index);
+        get("/upload/:filename", IndexController::serveUploadFiles);
+        get("/products", ProductsListController::index);
+        get("/products/view", ProductsListController::view);
+        get("/shc", ShoppingCardController::view);
 
-        get("/admin/categories", (req, resp) -> AdminCategoryController.index(req, resp));
-        post("/admin/categories", (req, resp) -> AdminCategoryController.modify(req, resp));
-        delete("/admin/categories", (req, resp) -> AdminCategoryController.delete(req, resp));
+        get("/admin", AdminIndexController::index);
 
+        get("/admin/categories", AdminCategoryController::index);
+        post("/admin/categories", AdminCategoryController::modify);
+        delete("/admin/categories", AdminCategoryController::delete);
 
-        get("/admin/products", (req, resp) -> AdminProductsController.index(req, resp));
-        get("/admin/products/new", (req, resp) -> AdminProductsController.newProduct(req, resp));
-        post("/admin/products/new", (req, resp) -> AdminProductsController.postProduct(req, resp));
+        get("/admin/products", AdminProductsController::index);
+        get("/admin/products/new", AdminProductsController::newProduct);
+        post("/admin/products/new", AdminProductsController::postProduct);
     }
 
 
