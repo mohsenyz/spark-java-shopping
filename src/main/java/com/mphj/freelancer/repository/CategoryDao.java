@@ -72,6 +72,16 @@ public class CategoryDao extends BaseDao {
 
 
     public Category findById(int categoryId) {
+        if (getCache() != null) {
+            for (Category category : getCache().keySet()) {
+                if (category.getId() == categoryId)
+                    return category;
+                for (Category subCat : getCache().get(category)) {
+                    if (subCat.getId() == categoryId)
+                        return subCat;
+                }
+            }
+        }
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         Query query = session.createQuery("FROM Category C WHERE C.id = :id");
