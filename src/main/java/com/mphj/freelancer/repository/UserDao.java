@@ -28,7 +28,21 @@ public class UserDao extends BaseDao<User> {
         Query query = session.createQuery("FROM User U WHERE U.phone = :phone");
         query.setMaxResults(1);
         query.setParameter("phone", phone);
+        User user = (User) query.getSingleResult();
         session.getTransaction().commit();
-        return (User) query.getSingleResult();
+        return user;
+    }
+
+
+    public User findByToken(String token) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("FROM User U WHERE U.token = :token");
+        query.setParameter("token", token);
+        User user = (User) query.getSingleResult();
+
+        session.getTransaction().commit();
+        return user;
     }
 }

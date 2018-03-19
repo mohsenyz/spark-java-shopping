@@ -43,7 +43,7 @@ public class UserController {
         UserDao userDao = new UserDao(HibernateUtils.getSessionFactory());
         User user = userDao.findByPhone(phone);
         if (user == null) {
-            response.redirect("/user/register");
+            response.status(400);
             return null;
         }
         if (code.trim().equals(user.getVerificationCode())) {
@@ -51,11 +51,11 @@ public class UserController {
                 user.setToken(RandomGenerator.randomAlphaNumeric(120));
             }
             response.cookie("token", user.getToken());
-            response.redirect("/user");
+            return "200";
         } else {
-            response.redirect("/user/verify?phone=" + phone);
+            response.status(500);
+            return "500";
         }
-        return null;
     }
 
 }
