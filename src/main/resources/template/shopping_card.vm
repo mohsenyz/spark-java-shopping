@@ -31,19 +31,19 @@
                 <div class="col col-12 col-md-4">
                     <div class="form-group">
                         <label>نام کامل</label>
-                        <input class="form-control" placeholder="نام کامل">
+                        <input class="form-control" name="name" placeholder="نام کامل">
                     </div>
                 </div>
                 <div class="col col-12 col-md-4">
                     <div class="form-group">
-                        <label>شماره تلفن</label>
-                        <input class="form-control" placeholder="شماره تلفن">
+                        <label>تلفن همراه</label>
+                        <input class="form-control" id="phone" placeholder="تلفن همراه">
                     </div>
                 </div>
                 <div class="col col-12 col-md-4">
                     <div class="form-group">
                         <label>ایمیل</label>
-                        <input class="form-control" placeholder="ایمیل">
+                        <input class="form-control" name="email" placeholder="ایمیل">
                     </div>
                 </div>
             </div>
@@ -51,13 +51,13 @@
                 <div class="col col-12 col-md-6">
                     <div class="form-group">
                         <label>آدرس کامل</label>
-                        <textarea class="form-control" placeholder="آدرس کامل"></textarea>
+                        <textarea class="form-control" name="address" placeholder="آدرس کامل"></textarea>
                     </div>
                 </div>
                 <div class="col col-12 col-md-6">
                     <div class="form-group">
                         <label>توضیحات</label>
-                        <textarea class="form-control" placeholder="توضیحات"></textarea>
+                        <textarea class="form-control" name="description" placeholder="توضیحات"></textarea>
                     </div>
                 </div>
             </div>
@@ -212,10 +212,10 @@
 
 
             $(".dec").click(function (event) {
-                if (ShopCard.get(productId)["count"] <= 0)
-                    return;
                 var parent = $(this).closest(".product");
                 var productId = parent.attr("data-product-id");
+                if (ShopCard.get(productId)["count"] <= 0)
+                    return;
                 ShopCard.dec(productId);
                 parent.find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
             });
