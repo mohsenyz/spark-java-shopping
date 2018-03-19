@@ -18,6 +18,7 @@
 
     #parse("/template/admin_header.vm")
 <div class="container mh-100vh my-5">
+
     <div class="row">
         <div class="col col-12">
             <form class="p-3 m-4 bg-light border border-primary" method="post">
@@ -50,9 +51,9 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col col-12">
+            #if ($giftcards.size() > 0)
             <ul class="list-group w-100 m-4">
                 #foreach($giftcard in $giftcards)
                     <li class="list-group-item p-0">
@@ -80,6 +81,9 @@
                     </li>
                 #end
             </ul>
+            #else
+                <h4 class="text-center">موردی یافت نشد</h4>
+            #end
         </div>
     </div>
 
