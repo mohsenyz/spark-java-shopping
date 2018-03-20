@@ -154,7 +154,7 @@ public class ShoppingCardController {
             shoppingCardProducts.add(shoppingCardProduct);
         }
 
-        shoppingCardProductDao.save((ShoppingCardProduct[]) shoppingCardProducts.toArray());
+        shoppingCardProductDao.save(shoppingCardProducts);
         response.redirect("Gatewayurl.com/" + shoppingCard.getToken());
         return null;
     }

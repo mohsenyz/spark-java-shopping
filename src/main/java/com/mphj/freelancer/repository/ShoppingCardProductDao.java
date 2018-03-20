@@ -4,13 +4,15 @@ import com.mphj.freelancer.repository.models.ShoppingCardProduct;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.util.List;
+
 public class ShoppingCardProductDao extends BaseDao<ShoppingCardProduct> {
 
     public ShoppingCardProductDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
-    public void save(ShoppingCardProduct... shoppingCardProducts) {
+    public void save(List<ShoppingCardProduct> shoppingCardProducts) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 

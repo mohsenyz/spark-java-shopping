@@ -4,6 +4,7 @@ import com.mphj.freelancer.config.AppConfig;
 import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
 import com.mphj.freelancer.index.ShoppingCardController;
+import com.mphj.freelancer.index.UserController;
 import com.mphj.freelancer.index.admin.AdminCategoryController;
 import com.mphj.freelancer.index.admin.AdminGiftCardsController;
 import com.mphj.freelancer.index.admin.AdminIndexController;
@@ -39,6 +40,7 @@ public class App {
         get("/products", ProductsListController::index);
         get("/products/view", ProductsListController::view);
         get("/shc", ShoppingCardController::view);
+        post("/shc", ShoppingCardController::newShoppingCard);
 
         get("/admin", AdminIndexController::index);
 
@@ -52,6 +54,9 @@ public class App {
 
         get("/admin/giftcards", AdminGiftCardsController::index);
         post("/admin/giftcards", AdminGiftCardsController::postGiftcard);
+
+        get("/user/verify", UserController::verifyUser);
+        get("/user/new", UserController::newUser);
     }
 
 

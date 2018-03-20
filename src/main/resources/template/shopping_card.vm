@@ -26,7 +26,7 @@
     <div class="row">
     #end
     <div class="col col-12">
-        <form class="p-3 m-4 border-success border">
+        <form class="p-3 m-4 border-success border" method="post">
             <div class="row">
                 <div class="col col-12 col-md-4">
                     <div class="form-group">
@@ -160,7 +160,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
-                    <button type="button" class="btn btn-success" id="save-cat-changes">ارسال کد</button>
+                    <button type="button" class="btn btn-success" id="register">ارسال کد</button>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
     #include("/template/client_scripts.html")
     <script>
         $(document).ready(function () {
-
+            window.verify = false;
             $(".like").click(function (event) {
                 event.preventDefault();
                 var parent = $(this).closest(".product");
@@ -226,9 +226,45 @@
                 $(this).find("#count").html(ShopCard.get(productId)["count"] + " " + "عدد");
             });
 
-            $("#next").click(function () {
-                if (Cookies.get("token") == '') {
+            $("#next").click(function (event) {
+                var token = Cookies.get("token");
+                if (token == undefined || token == null || token == '') {
                     $("#loginModal").modal("show");
+                    event.preventDefault();
+                }
+            });
+            
+            $("#register").click(function (event) {
+                if (!window.verify) {
+                    var phoneNumber = $("#phone-number").val();
+                    $.ajax({
+                        method: "GET",
+                        url: "/user/new",
+                        data: {
+                            phone : phoneNumber
+                        }
+                    }).done(function (msg) {
+                        $("#code").parent().show();
+                        window.verify = true;
+                    }).fail(function () {
+                        alert("Error occured");
+                    });
+                } else {
+                    var phoneNumber = $("#phone-number").val();
+                    var code = $("#code").val();
+                    $.ajax({
+                        method: "GET",
+                        url: "/user/verify",
+                        data: {
+                            phone : phoneNumber,
+                            code : code
+                        }
+                    }).done(function (msg) {
+                        $("#loginModal").modal("hide");
+                        Cookies.set("token", msg.trim());
+                    }).fail(function () {
+                        alert("Error occured");
+                    });
                 }
             });
         });

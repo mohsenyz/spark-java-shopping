@@ -19,7 +19,17 @@ public class UserController {
 
         String validatedPhone = PhoneValidator.newMobileNumberValidator().getValid(phone);
         UserDao userDao = new UserDao(HibernateUtils.getSessionFactory());
-        User user = userDao.findByPhone(validatedPhone);
+        User user = null;
+
+        try {
+            user = userDao.findByPhone(validatedPhone);
+        } catch (Exception e) {
+            HibernateUtils.getSessionFactory()
+                    .getCurrentSession()
+                    .getTransaction()
+                    .commit();
+            e.printStackTrace();
+        }
 
         if (user == null) {
             user = new User();
@@ -36,12 +46,25 @@ public class UserController {
     }
 
 
-    public static String verify(Request request, Response response) {
+    public static String verifyUser(Request request, Response response) {
         String code = request.queryParams("code");
         String phone = request.queryParams("phone");
 
+        PhoneValidator phoneValidator = PhoneValidator.newMobileNumberValidator();
+        if (!phoneValidator.isValid(phone)) {
+            response.status(500);
+            return "Bad phone";
+        }
+
+        phone = phoneValidator.getValid(phone);
+
         UserDao userDao = new UserDao(HibernateUtils.getSessionFactory());
-        User user = userDao.findByPhone(phone);
+        User user = null;
+        try {
+            user = userDao.findByPhone(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (user == null) {
             response.status(400);
             return null;
@@ -50,8 +73,8 @@ public class UserController {
             if (user.getToken() == null) {
                 user.setToken(RandomGenerator.randomAlphaNumeric(120));
             }
-            response.cookie("token", user.getToken());
-            return "200";
+            userDao.save(user);
+            return user.getToken();
         } else {
             response.status(500);
             return "500";
