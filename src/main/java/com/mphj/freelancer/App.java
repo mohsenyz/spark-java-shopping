@@ -5,10 +5,7 @@ import com.mphj.freelancer.index.IndexController;
 import com.mphj.freelancer.index.ProductsListController;
 import com.mphj.freelancer.index.ShoppingCardController;
 import com.mphj.freelancer.index.UserController;
-import com.mphj.freelancer.index.admin.AdminCategoryController;
-import com.mphj.freelancer.index.admin.AdminGiftCardsController;
-import com.mphj.freelancer.index.admin.AdminIndexController;
-import com.mphj.freelancer.index.admin.AdminProductsController;
+import com.mphj.freelancer.index.admin.*;
 import com.mphj.freelancer.mocks.MockedRLocalCache;
 import com.mphj.freelancer.utils.AppProperties;
 import com.mphj.freelancer.utils.Cache;
@@ -54,6 +51,9 @@ public class App {
 
         get("/admin/giftcards", AdminGiftCardsController::index);
         post("/admin/giftcards", AdminGiftCardsController::postGiftcard);
+
+        get("/admin/deliverers", AdminDeliverersController::index);
+        post("/admin/deliverers", AdminDeliverersController::postDeliverer);
 
         get("/user/verify", UserController::verifyUser);
         get("/user/new", UserController::newUser);

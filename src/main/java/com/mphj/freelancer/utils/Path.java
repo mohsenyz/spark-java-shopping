@@ -19,6 +19,7 @@ public class Path {
         public static final String ADMIN_LIST_PRODUCTS = TEMPLATE_PATH + "admin_products.vm";
         public static final String ADMIN_NEW_PRODUCT = TEMPLATE_PATH + "admin_new_product.vm";
         public static final String ADMIN_GIFT_CARDS = TEMPLATE_PATH + "admin_giftcards.vm";
+        public static final String ADMIN_DELIVERERS = TEMPLATE_PATH + "admin_deliverers.vm";
         public static final String LIST_PRODUCTS = TEMPLATE_PATH + "product_list.vm";
         public static final String PRODUCT = TEMPLATE_PATH + "product.vm";
         public static final String SHOPPING_CARD = TEMPLATE_PATH + "shopping_card.vm";

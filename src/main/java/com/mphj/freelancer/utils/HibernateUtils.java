@@ -32,6 +32,7 @@ public class HibernateUtils {
                 sources.addAnnotatedClass(ShoppingCardProduct.class);
                 sources.addAnnotatedClass(User.class);
                 sources.addAnnotatedClass(GiftCard.class);
+                sources.addAnnotatedClass(Deliverer.class);
                 Metadata metadata = sources.getMetadataBuilder().build();
                 sessionFactory = metadata.getSessionFactoryBuilder().build();
             } catch (Exception e) {
