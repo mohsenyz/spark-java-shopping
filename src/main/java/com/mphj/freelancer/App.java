@@ -54,6 +54,7 @@ public class App {
 
         get("/admin/deliverers", AdminDeliverersController::index);
         post("/admin/deliverers", AdminDeliverersController::postDeliverer);
+        delete("/admin/deliverers", AdminDeliverersController::deleteDeliverer);
 
         get("/user/verify", UserController::verifyUser);
         get("/user/new", UserController::newUser);

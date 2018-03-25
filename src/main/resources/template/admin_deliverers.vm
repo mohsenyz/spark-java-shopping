@@ -60,7 +60,7 @@
                         <span class="float-right p-2">
                             $deliverer.getName()
                         </span>
-                            <button class="btn btn-danger float-left cp-btn p-2" style="border-radius: 0 !important;">
+                            <button class="btn btn-danger float-left cp-btn p-2" style="border-radius: 0 !important;" onclick="deleteDeliverer($deliverer.getId())">
                                 <i class="fas fas-m fa-trash ml-1"></i>
                                 حذف کردن
                             </button>
@@ -88,8 +88,29 @@
     #parse("/template/footer.vm")
     #include("/template/admin_scripts.html")
 <script>
+
+    var isDeleteBusy = false;
+
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function deleteDeliverer(delivererId) {
+        if (isDeleteBusy) {
+            console.log("Don't attemp please!");
+            return;
+        }
+        isDeleteBusy = true;
+        $.ajax({
+            method : 'DELETE',
+            url : '/admin/deliverers?id=' + delivererId
+        }).done(function(data) {
+            window.location.reload(false);
+        }).fail(function () {
+            alert("Error occured");
+        }).always(function () {
+            isDeleteBusy = false;
+        });
     }
 
     function randomSerial() {

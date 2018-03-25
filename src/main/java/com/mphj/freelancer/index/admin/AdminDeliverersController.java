@@ -63,8 +63,31 @@ public class AdminDeliverersController {
 
         delivererDao.save(deliverer);
 
-        response.redirect(request.contextPath() + "?success=1");
+        response.redirect("/admin/deliverers?success=1");
         return null;
+    }
+
+
+    public static String deleteDeliverer(Request request, Response response) {
+        String id = request.queryParams("id");
+        int idValue;
+
+        try {
+            idValue = Integer.parseInt(id);
+        } catch (Exception e) {
+            response.status(500);
+            return null;
+        }
+
+        if (idValue == 0) {
+            response.status(500);
+            return null;
+        }
+
+        DelivererDao delivererDao = new DelivererDao(HibernateUtils.getSessionFactory());
+        delivererDao.delete(idValue);
+
+        return "success";
     }
 
 }
