@@ -1,8 +1,10 @@
 package com.mphj.freelancer.index.admin;
 
 import com.google.common.net.MediaType;
+import com.mphj.freelancer.repository.DelivererDao;
 import com.mphj.freelancer.repository.ShoppingCardDao;
 import com.mphj.freelancer.repository.UserDao;
+import com.mphj.freelancer.repository.models.Deliverer;
 import com.mphj.freelancer.repository.models.ShoppingCard;
 import com.mphj.freelancer.repository.models.User;
 import com.mphj.freelancer.utils.*;
@@ -24,6 +26,7 @@ public class AdminShoppingCardController {
 
         ShoppingCardDao shoppingCardDao = new ShoppingCardDao(HibernateUtils.getSessionFactory());
         UserDao userDao = new UserDao(HibernateUtils.getSessionFactory());
+        DelivererDao delivererDao = new DelivererDao(HibernateUtils.getSessionFactory());
 
         List<ShoppingCard> shoppingCards = shoppingCardDao.getAll();
 
@@ -34,11 +37,53 @@ public class AdminShoppingCardController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("shoppingcards", shoppingCards);
+        map.put("deliverers", delivererDao.getAll());
 
         response.type(MediaType.HTML_UTF_8.toString());
         String body = ViewUtils.render(Path.Template.ADMIN_SHOPPINGCARDS, map);
         Cache.putAsync(Hash.hashRequest(request), body);
 
         return body;
+    }
+
+
+    public static String setDeliverer(Request request, Response response) {
+        String shoppingCardIdStr = request.queryParams("shc_id");
+        String delivererIdStr = request.queryParams("id");
+
+        int delivererId, shoppingCardId;
+
+        if (delivererIdStr == null ||
+                delivererIdStr.isEmpty() ||
+                shoppingCardIdStr == null ||
+                shoppingCardIdStr.isEmpty()) {
+
+            response.redirect("/admin/shoppingcards?bad_input=1");
+            return null;
+
+        }
+
+        try {
+            delivererId = Integer.parseInt(delivererIdStr);
+            shoppingCardId = Integer.parseInt(shoppingCardIdStr);
+        } catch (Exception e) {
+            response.redirect("/admin/shoppingcards?bad_input=1");
+            return null;
+        }
+
+        ShoppingCardDao shoppingCardDao = new ShoppingCardDao(HibernateUtils.getSessionFactory());
+        DelivererDao delivererDao = new DelivererDao(HibernateUtils.getSessionFactory());
+
+        if (delivererId != 0) {
+            Deliverer deliverer = delivererDao.findById(delivererId);
+        }
+
+        ShoppingCard shoppingCard = shoppingCardDao.findById(shoppingCardId);
+        shoppingCard.setDelivererId(delivererId);
+
+        shoppingCardDao.save(shoppingCard);
+
+        response.redirect("/admin/shoppingcards?sd_success=1");
+        return null;
     }
 }

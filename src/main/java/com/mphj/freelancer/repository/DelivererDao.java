@@ -44,4 +44,16 @@ public class DelivererDao extends BaseDao<Deliverer> {
 
         session.getTransaction().commit();
     }
+
+
+    public Deliverer findById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM Deliverer D WHERE D.id = :id");
+        query.setMaxResults(1);
+        query.setParameter("id", id);
+        Deliverer user = (Deliverer) query.getSingleResult();
+        session.getTransaction().commit();
+        return user;
+    }
 }

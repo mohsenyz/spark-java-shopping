@@ -4,6 +4,7 @@ import com.mphj.freelancer.repository.models.ShoppingCard;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class ShoppingCardDao extends BaseDao<ShoppingCard> {
@@ -32,5 +33,17 @@ public class ShoppingCardDao extends BaseDao<ShoppingCard> {
 
         session.getTransaction().commit();
         return list;
+    }
+
+
+    public ShoppingCard findById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM ShoppingCard S WHERE S.id = :id");
+        query.setMaxResults(1);
+        query.setParameter("id", id);
+        ShoppingCard user = (ShoppingCard) query.getSingleResult();
+        session.getTransaction().commit();
+        return user;
     }
 }

@@ -24,18 +24,29 @@
             #if ($shoppingcards.size() > 0)
                 <ul class="list-group w-100 m-4">
                     #foreach($shoppingcard in $shoppingcards)
-                        <li class="list-group-item p-0">
+                        <li class="list-group-item p-0 border border-primary">
                             <span class="float-right p-2">
                                 $shoppingcard.getUserName() ($shoppingcard.getUser().getPhone())
                             </span>
-                            <button class="btn btn-primary float-left cp-btn p-2" style="border-radius: 0 !important;">
-                                <i class="fas fas-m fa-trash ml-1"></i>
-                                #if($shoppingcard.getDelivererId() == 0)
-                                    انتخاب پست چی
+
+                            <select name="category" class="form-control select-deliverer float-left w-25" data-shoppingcard-id="$shoppingcard.getId()" data-default="$shoppingcard.getDelivererId()">
+
+                                #if ($shoppingcard.getDelivererId() == 0)
+                                    <option value="0" selected>انتخاب پست چی</option>
                                 #else
-                                    $shoppingcard.getDeliverer().getName() ($shoppingcard.getDeliverer().getPhone())
+                                    <option value="0">انتخاب پست چی</option>
                                 #end
-                            </button>
+
+                                #foreach($deliverer in $deliverers)
+                                    #if($shoppingcard.getDelivererId() == $deliverer.getId())
+                                        <option value="$deliverer.getId()" selected>$deliverer.getName()</option>
+                                    #else
+                                        <option value="$deliverer.getId()">$deliverer.getName()</option>
+                                    #end
+                                #end
+
+                            </select>
+
                             <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
                                 <i class="fas-m fas fa-map ml-1"></i>
                                 $shoppingcard.getPrice()
@@ -60,7 +71,16 @@
     #include("/template/admin_scripts.html")
 <script>
     $(document).ready(function () {
-        new ClipboardJS('.cp-btn');
+        $(".select-deliverer").click(function (event) {
+            var currSelect = $(this);
+            var initialVal = currSelect.attr("data-default");
+            var currVal = currSelect.val();
+            if (currVal == initialVal)
+                return;
+            var shoppingCardId = currSelect.attr("data-shoppingcard-id");
+            window.location.href = "/admin/shoppingcards/deliverer?id="
+                + currVal + "&shc_id=" + shoppingCardId;
+        });
     });
 </script>
 </body>
