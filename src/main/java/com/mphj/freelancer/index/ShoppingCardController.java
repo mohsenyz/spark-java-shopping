@@ -159,7 +159,7 @@ public class ShoppingCardController {
         }
 
         shoppingCardProductDao.save(shoppingCardProducts);
-        response.redirect("Gatewayurl.com/" + shoppingCard.getToken());
+        response.redirect(GatewayHelper.gatewayUrl(shoppingCard.getToken()));
         return null;
     }
 
