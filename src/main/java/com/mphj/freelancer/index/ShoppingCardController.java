@@ -138,12 +138,11 @@ public class ShoppingCardController {
         shoppingCard.setUserName(name);
         shoppingCard.setPrice(totalPrice);
 
-        shoppingCardDao.save(shoppingCard);
-
         try {
             shoppingCard.setToken(GatewayHelper.newSession(totalPrice, shoppingCard.getId()));
         } catch (Exception e) {
-            e.printStackTrace();
+            response.redirect("/shc?err_gateway=1");
+            return null;
         }
 
         shoppingCardDao.save(shoppingCard);
