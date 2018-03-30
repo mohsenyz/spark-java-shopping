@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    <link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="/css/admin_main.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
+</head>
+<body class="rtl">
+
+    #parse("/template/admin_header.vm")
+<div class="container mh-100vh my-5">
+
+    <div class="row">
+        <div class="col col-12">
+            #if ($deliverers.size() > 0)
+                <ul class="list-group w-100 m-4">
+                    #foreach($deliverer in $deliverers)
+                        <li class="list-group-item p-0">
+                        <span class="float-right p-2">
+                            $deliverer.getName()
+                        </span>
+                            <button class="btn btn-danger float-left cp-btn p-2" style="border-radius: 0 !important;">
+                                <i class="fas fas-m fa-trash ml-1"></i>
+                                حذف کردن
+                            </button>
+                            <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
+                                <i class="fas-m fas fa-map ml-1"></i>
+                                مشاهده روی نقشه
+                            </button>
+                            <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
+                                <i class="fas-m fas fa-phone ml-1"></i>
+                                $deliverer.getPhone()
+                            </button>
+                        </li>
+                    #end
+                </ul>
+            #else
+                <h4 class="text-center">موردی یافت نشد</h4>
+            #end
+        </div>
+    </div>
+
+
+</div>
+
+
+    #parse("/template/footer.vm")
+    #include("/template/admin_scripts.html")
+<script>
+    $(document).ready(function () {
+        new ClipboardJS('.cp-btn');
+    });
+</script>
+</body>
+</html>

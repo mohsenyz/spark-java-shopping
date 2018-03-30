@@ -140,7 +140,11 @@ public class ShoppingCardController {
 
         shoppingCardDao.save(shoppingCard);
 
-        shoppingCard.setToken(GatewayHelper.newSession(totalPrice, shoppingCard.getId()));
+        try {
+            shoppingCard.setToken(GatewayHelper.newSession(totalPrice, shoppingCard.getId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         shoppingCardDao.save(shoppingCard);
 
