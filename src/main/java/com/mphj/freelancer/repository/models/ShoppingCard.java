@@ -24,6 +24,9 @@ public class ShoppingCard {
     private int delivererId;
     private boolean isDelivered;
 
+    @Transient
+    private User user;
+
     public int getId() {
         return id;
     }
@@ -134,5 +137,13 @@ public class ShoppingCard {
 
     public void setDelivered(boolean delivered) {
         isDelivered = delivered;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

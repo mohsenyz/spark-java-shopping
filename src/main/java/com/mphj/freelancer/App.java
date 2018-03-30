@@ -52,6 +52,8 @@ public class App {
         get("/admin/giftcards", AdminGiftCardsController::index);
         post("/admin/giftcards", AdminGiftCardsController::postGiftcard);
 
+        get("/admin/shoppingcards", AdminShoppingCardController::index);
+
         get("/admin/deliverers", AdminDeliverersController::index);
         post("/admin/deliverers", AdminDeliverersController::postDeliverer);
         delete("/admin/deliverers", AdminDeliverersController::deleteDeliverer);

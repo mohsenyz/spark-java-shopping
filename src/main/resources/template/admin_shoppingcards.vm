@@ -21,25 +21,28 @@
 
     <div class="row">
         <div class="col col-12">
-            #if ($deliverers.size() > 0)
+            #if ($shoppingcards.size() > 0)
                 <ul class="list-group w-100 m-4">
-                    #foreach($deliverer in $deliverers)
+                    #foreach($shoppingcard in $shoppingcards)
                         <li class="list-group-item p-0">
-                        <span class="float-right p-2">
-                            $deliverer.getName()
-                        </span>
-                            <button class="btn btn-danger float-left cp-btn p-2" style="border-radius: 0 !important;">
+                            <span class="float-right p-2">
+                                $shoppingcard.getUserName() ($shoppingcard.getUser().getPhone())
+                            </span>
+                            <button class="btn btn-primary float-left cp-btn p-2" style="border-radius: 0 !important;">
                                 <i class="fas fas-m fa-trash ml-1"></i>
-                                حذف کردن
-                            </button>
-                            <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
-                                <i class="fas-m fas fa-map ml-1"></i>
-                                مشاهده روی نقشه
+                                #if($shoppingcard.getDelivererId() == 0)
+                                    انتخاب پست چی
+                                #else
+                                    $shoppingcard.getDeliverer().getName() ($shoppingcard.getDeliverer().getPhone())
+                                #end
                             </button>
                             <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
-                                <i class="fas-m fas fa-phone ml-1"></i>
-                                $deliverer.getPhone()
+                                <i class="fas-m fas fa-map ml-1"></i>
+                                $shoppingcard.getPrice()
                             </button>
+                        </li>
+                        <li class="list-group-item bg-dark text-white mb-2">
+                            $shoppingcard.getAddress()
                         </li>
                     #end
                 </ul>
