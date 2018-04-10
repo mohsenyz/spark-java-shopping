@@ -1,10 +1,14 @@
 <div id="main-navbar" class="w-100 fixed-top bg-white">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    #if ($isMobile == false)
+    <nav class="navbar navbar-expand-lg navbar-light bg-white";">
         <a class="navbar-brand" href="#">برند فروشگاه</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        #if ($mobileVersion)
+        #else
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        #end
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -14,20 +18,22 @@
                     <a class="nav-link" href="#">تماس با ما</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ورود یا ثبت نام</a>
+                    <a class="nav-link" href="#" id="login-btn">ورود یا ثبت نام</a>
                 </li>
             </ul>
             <a class="btn btn-success my-2 my-sm-0 mr-5" href="/shc" target="_blank" type="submit">
                 سبد خرید
                 <i class="fas fa-shopping-cart fas-m"></i>
             </a>
-            <button class="btn btn-primary my-2 my-sm-0 mr-1" type="submit">
+            <a class="btn btn-primary my-2 my-sm-0 mr-1" href="/user/profile" type="submit">
                 ناحیه کاربری
                 <i class="fas fa-user fas-m"></i>
-            </button>
+            </a>
         </div>
     </nav>
-    <div class="w-100 pr-0 pr-md-5 pt-1" id="category-container">
+    #end
+    <section class="w-100 pr-0 pr-md-5 pt-1">
+    <div id="category-container">
         #foreach($mCat in $cats.entrySet())
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"
@@ -44,4 +50,5 @@
             </div>
         #end
     </div>
+    </section>
 </div>

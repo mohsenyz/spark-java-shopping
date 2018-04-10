@@ -7,6 +7,7 @@ import com.mphj.freelancer.index.ShoppingCardController;
 import com.mphj.freelancer.index.UserController;
 import com.mphj.freelancer.index.admin.*;
 import com.mphj.freelancer.mocks.MockedRLocalCache;
+import com.mphj.freelancer.sockets.DelivererWebSocket;
 import com.mphj.freelancer.utils.AppProperties;
 import com.mphj.freelancer.utils.Cache;
 import com.mphj.freelancer.utils.HibernateUtils;
@@ -21,7 +22,11 @@ public class App {
     public static void main(String[] args) {
         initRedis();
         initDB();
+
         final int portNumber = (args.length >= 1) ? Integer.parseInt(args[0]) : 8090;
+
+        webSocket("/ws/deliverers", DelivererWebSocket.class);
+
         port(portNumber);
         staticFiles.location("/public");
 
@@ -61,6 +66,8 @@ public class App {
 
         get("/user/verify", UserController::verifyUser);
         get("/user/new", UserController::newUser);
+        get("/user/profile", UserController::viewShoppingCards);
+        get("/user/map", UserController::viewMap);
     }
 
 

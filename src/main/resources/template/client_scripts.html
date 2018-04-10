@@ -1,3 +1,35 @@
+<!-- Best place for login modal! -->
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">ورود یا ثبت نام</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="col-form-label">شماره تلفن:</label>
+                        <input type="text" class="form-control" id="phone-number">
+                    </div>
+                </form>
+                <div class="form-group" style="display: none;">
+                    <label class="col-form-label">کد:</label>
+                    <input type="text" class="form-control text-center" id="code">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+                <button type="button" class="btn btn-success" id="register">ارسال کد</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -9,3 +41,63 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="/js/shop_card.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#login-btn").click(function (event) {
+            var token = Cookies.get("token");
+            if (token == undefined || token == null || token == '') {
+                $("#loginModal").modal("show");
+                event.preventDefault();
+            }
+        });
+
+        var navWidth = 0;
+        $("#category-container > div").each(function () {
+           navWidth += $(this).width() + 10;
+        });
+        $("#category-container").width(navWidth);
+        /*$(window).on("resize", function () {
+           if (window.innerWidth < navWidth) {
+               $("#category-container").parent().css("overflow-x", "scroll");
+           } else {
+               $("#category-container").parent().css("overflow-x", "auto");
+           }
+        });*/
+
+        $("#register").click(function (event) {
+            if (!window.verify) {
+                var phoneNumber = $("#phone-number").val();
+                $.ajax({
+                    method: "GET",
+                    url: "/user/new",
+                    data: {
+                        phone : phoneNumber
+                    }
+                }).done(function (msg) {
+                    $("#code").parent().show();
+                    window.verify = true;
+                }).fail(function () {
+                    alert("Error occured");
+                });
+            } else {
+                var phoneNumber = $("#phone-number").val();
+                var code = $("#code").val();
+                $.ajax({
+                    method: "GET",
+                    url: "/user/verify",
+                    data: {
+                        phone : phoneNumber,
+                        code : code
+                    }
+                }).done(function (msg) {
+                    $("#loginModal").modal("hide");
+                    Cookies.set("token", msg.trim());
+                }).fail(function () {
+                    alert("Error occured");
+                });
+            }
+        });
+    });
+</script>

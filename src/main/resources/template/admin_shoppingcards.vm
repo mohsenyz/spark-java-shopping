@@ -18,7 +18,24 @@
 
     #parse("/template/admin_header.vm")
 <div class="container mh-100vh my-5">
-
+    <div class="row align-middle pt-4">
+        <div class="col text-center col-sm-3">
+            <span class="h4 align-middle">$totalPayedShoppingCardPrice</span>
+            تومان سبد پرداخت شده
+        </div>
+        <div class="col text-center col-sm-3">
+            <span class="h4 align-middle">$totalDeliveredShoppingCards</span>
+            سبد تحویل داده شده
+        </div>
+        <div class="col text-center col-sm-3">
+            <span class="h4 align-middle">$totalUndeliveredShoppingCards</span>
+            سبد در انتظار پست
+        </div>
+        <div class="col text-center col-sm-3">
+            <span class="h4 align-middle">$totalPayedShoppingCards</span>
+            سبد پرداخت شده
+        </div>
+    </div>
     <div class="row">
         <div class="col col-12">
             #if ($shoppingcards.size() > 0)
@@ -50,6 +67,7 @@
                             <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
                                 <i class="fas-m fas fa-map ml-1"></i>
                                 $shoppingcard.getPrice()
+                                تومان
                             </button>
                         </li>
                         <li class="list-group-item bg-dark text-white mb-2">

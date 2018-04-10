@@ -29,6 +29,8 @@ public class ProductsListController {
         map.put("cats", categoryDao.getAll());
         map.put("products", new ArrayList<>());
 
+        DeviceUtils.handleMobile(map, request);
+
         if (request.queryParams("cat_id") != null) {
             System.err.println(request.queryParams("cat_id"));
             try {
@@ -60,6 +62,8 @@ public class ProductsListController {
         ProductDao productDao = new ProductDao(HibernateUtils.getSessionFactory());
         Map<String, Object> map = new HashMap<>();
         map.put("cats", categoryDao.getAll());
+
+        DeviceUtils.handleMobile(map, request);
 
         if (request.queryParams("id") != null) {
             try {

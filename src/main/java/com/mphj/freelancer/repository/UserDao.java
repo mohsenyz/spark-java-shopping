@@ -28,8 +28,16 @@ public class UserDao extends BaseDao<User> {
         Query query = session.createQuery("FROM User U WHERE U.phone = :phone");
         query.setMaxResults(1);
         query.setParameter("phone", phone);
-        User user = (User) query.getSingleResult();
-        session.getTransaction().commit();
+
+        User user = null;
+
+        try {
+            user = (User) query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+
         return user;
     }
 
@@ -40,8 +48,16 @@ public class UserDao extends BaseDao<User> {
         Query query = session.createQuery("FROM User U WHERE U.id = :id");
         query.setMaxResults(1);
         query.setParameter("id", id);
-        User user = (User) query.getSingleResult();
-        session.getTransaction().commit();
+
+        User user = null;
+
+        try {
+            user = (User) query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+
         return user;
     }
 
@@ -52,9 +68,16 @@ public class UserDao extends BaseDao<User> {
 
         Query query = session.createQuery("FROM User U WHERE U.token = :token");
         query.setParameter("token", token);
-        User user = (User) query.getSingleResult();
 
-        session.getTransaction().commit();
+        User user = null;
+
+        try {
+            user = (User) query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+
         return user;
     }
 }

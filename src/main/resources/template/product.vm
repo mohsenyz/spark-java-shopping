@@ -16,7 +16,7 @@
     #parse("/template/client_header.vm")
 <div class="container-fluid mh-100vh" id="product-container">
     <div class="row">
-        <div class="col col-md-7 pt-3 pr-4">
+        <div class="col col-md-7 pt-3 pr-4 col-12">
             <div class="card w-100">
                 <div class="card-body">
                     <h5 class="card-title">

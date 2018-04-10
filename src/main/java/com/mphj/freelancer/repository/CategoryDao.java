@@ -48,7 +48,7 @@ public class CategoryDao extends BaseDao {
             return getCache();
         Session session = sessionFactory.getCurrentSession();
         Transaction tr = session.beginTransaction();
-        Query query = session.createQuery("FROM Category c");
+        Query query = session.createQuery("FROM Category c ORDER BY c.id");
         List<Category> list = query.getResultList();
         Map<Category, List<Category>> map = new HashMap<>();
         Map<Integer, Category> mapHelper = new HashMap<>();

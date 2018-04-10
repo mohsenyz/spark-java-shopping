@@ -24,6 +24,8 @@ public class Path {
         public static final String LIST_PRODUCTS = TEMPLATE_PATH + "product_list.vm";
         public static final String PRODUCT = TEMPLATE_PATH + "product.vm";
         public static final String SHOPPING_CARD = TEMPLATE_PATH + "shopping_card.vm";
+        public static final String USER_SHOPPING_CARDS = TEMPLATE_PATH + "user_shoppingcards.vm";
+        public static final String USER_MAP = TEMPLATE_PATH + "user_map.vm";
 
     }
 

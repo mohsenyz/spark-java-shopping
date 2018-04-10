@@ -4,6 +4,12 @@
     src: url(../font/IRANSansWeb_Light.woff2) format('woff2');
 }
 
+@font-face {
+    font-family: 'Iran';
+    font-style: normal;
+    src: url(../font/IRANSansWeb_Light.woff2) format('woff2'), url("../font/iran.ttf") format("truetype");
+}
+
 body {
     padding: 0px;
     margin: 0px;

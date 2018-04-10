@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    #include("/template/cl_header_resources.html")
+</head>
+<body class="rtl">
+    #parse("/template/client_header.vm")
+<div class="container-fluid mh-100vh">
+    <div class="row">
+        <div class="col col-12">
+            #if ($shoppingcards.size() > 0)
+                <ul class="list-group w-100 m-4">
+                    #foreach($shoppingcard in $shoppingcards)
+                        <li class="list-group-item p-0 border border-primary">
+                            <span class="float-right p-2">
+                                سبد خرید $shoppingcard.getId()
+                            </span>
+                            <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
+                                <i class="fas-m fas fa-map ml-1"></i>
+                                $shoppingcard.getPrice()
+                                تومان
+                            </button>
+                            #if(!$shoppingcard.isDelivered())
+                            <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
+                                <i class="fas-m fas fa-map ml-1"></i>
+                                گزارش رسید
+                            </button>
+                            #end
+                            #if($shoppingcard.getDeliverer())
+                            <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
+                                <i class="fas-m fas fa-map ml-1"></i>
+                                پست کننده :‌
+                                $shoppingcard.getDeliverer().getName()
+                            </button>
+                                <button class="btn btn-info float-left p-2" style="border-radius: 0 !important;">
+                                    <i class="fas-m fas fa-map ml-1"></i>
+                                    مشاهده روی نقشه
+                                </button>
+                            #end
+                        </li>
+                        <li class="list-group-item bg-dark text-white mb-2">
+                            $shoppingcard.getAddress()
+                        </li>
+                    #end
+                </ul>
+            #else
+                <h4 class="text-center">موردی یافت نشد</h4>
+            #end
+        </div>
+    </div>
+</div>
+
+    #parse("/template/footer.vm")
+    #include("/template/client_scripts.html")
+    <script>
+
+    </script>
+</body>
+</html>

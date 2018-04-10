@@ -30,14 +30,32 @@ public class AdminShoppingCardController {
 
         List<ShoppingCard> shoppingCards = shoppingCardDao.getAll();
 
+        int totalPayedShoppingCardPrice = 0;
+        int totalPayedShoppingCards = 0;
+        int totalUndeliveredShoppingCards = 0;
+        int totalDeliveredShoppingCards = 0;
+
         for (ShoppingCard shoppingCard : shoppingCards) {
             User user = userDao.findById(shoppingCard.getUserId());
             shoppingCard.setUser(user);
+            if (shoppingCard.isPayed()) {
+                totalPayedShoppingCardPrice += shoppingCard.getPrice();
+                totalPayedShoppingCards++;
+                if (shoppingCard.isDelivered()) {
+                    totalDeliveredShoppingCards++;
+                } else {
+                    totalUndeliveredShoppingCards--;
+                }
+            }
         }
 
         Map<String, Object> map = new HashMap<>();
         map.put("shoppingcards", shoppingCards);
         map.put("deliverers", delivererDao.getAll());
+        map.put("totalPayedShoppingCardPrice", totalPayedShoppingCardPrice);
+        map.put("totalPayedShoppingCards", totalPayedShoppingCards);
+        map.put("totalDeliveredShoppingCards", totalDeliveredShoppingCards);
+        map.put("totalUndeliveredShoppingCards", totalUndeliveredShoppingCards);
 
         response.type(MediaType.HTML_UTF_8.toString());
         String body = ViewUtils.render(Path.Template.ADMIN_SHOPPINGCARDS, map);

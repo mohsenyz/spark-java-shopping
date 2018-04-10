@@ -134,38 +134,6 @@
     </div>
 </div>
 
-
-
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">ورود یا ثبت نام</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label class="col-form-label">شماره تلفن:</label>
-                            <input type="text" class="form-control" id="phone-number">
-                        </div>
-                    </form>
-                    <div class="form-group" style="display: none;">
-                        <label class="col-form-label">کد:</label>
-                        <input type="text" class="form-control text-center" id="code">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
-                    <button type="button" class="btn btn-success" id="register">ارسال کد</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     #parse("/template/footer.vm")
     #include("/template/client_scripts.html")
     <script>

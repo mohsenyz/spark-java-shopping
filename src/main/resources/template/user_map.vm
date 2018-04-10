@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"/>
+<body>
+
+<div id="googleMap" style="width:100%;height:100vh;"></div>
+<h2 id="status" style="z-index: 99999; position: absolute; top: 0px; text-align: center; width: 100%;"></h2>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<script>
+    var socketStatus = document.getElementById("status");
+    var socket;
+    function myMap() {
+        myCenter = new google.maps.LatLng(32.427908,53.688046);
+        var mapProp= {
+            center: myCenter,
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        window.marker = new google.maps.Marker({position: myCenter});
+        window.marker.setMap(map);
+        load();
+
+    }
+    
+    function load() {
+        socket = new WebSocket('ws://localhost:8090/ws/deliverers');
+        socket.onopen = function(event) {
+            socketStatus.innerHTML = 'متصل شد'
+            socketStatus.className = 'open';
+            socket.send("/verify " + Cookies.get("token"));
+        };
+        socket.onerror = function(error) {
+            console.log('WebSocket Error: ' + error);
+        };
+        socket.onclose = function(event) {
+            socketStatus.innerHTML = 'متصل نشد';
+            socketStatus.className = 'closed';
+        };
+        socket.onmessage = function(event) {
+            var message = event.data;
+            if (message.indexOf(",") >= 0) {
+                latlngs = message.split(",");
+                newPosition = new google.maps.LatLng(parseFloat(latlngs[0].trim()),parseFloat(latlngs[1].trim()));
+                window.marker.setPosition(newPosition);
+            }
+        };
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRRpg41e4OskrBgBsfyEPEv5qwgdMdeIU&callback=myMap"></script>
+
+</body>

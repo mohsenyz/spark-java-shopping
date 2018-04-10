@@ -27,6 +27,8 @@ public class IndexController {
         Map<String, Object> map = new HashMap<>();
         map.put("cats", categoryDao.getAll());
 
+        DeviceUtils.handleMobile(map, request);
+
         response.type(MediaType.HTML_UTF_8.toString());
         String body = ViewUtils.render(Path.Template.INDEX, map);
         Cache.putAsync(Hash.hashRequest(request, Hash.HashType.FAST), body);

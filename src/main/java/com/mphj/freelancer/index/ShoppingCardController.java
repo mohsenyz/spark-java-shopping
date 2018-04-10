@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.net.MediaType;
 import com.mphj.freelancer.repository.*;
 import com.mphj.freelancer.repository.models.*;
-import com.mphj.freelancer.utils.GatewayHelper;
-import com.mphj.freelancer.utils.HibernateUtils;
-import com.mphj.freelancer.utils.Path;
-import com.mphj.freelancer.utils.ViewUtils;
+import com.mphj.freelancer.utils.*;
 import spark.Request;
 import spark.Response;
 
@@ -57,6 +54,8 @@ public class ShoppingCardController {
         CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory());
         map.put("cats", categoryDao.getAll());
 
+        DeviceUtils.handleMobile(map, request);
+
         response.type(MediaType.HTML_UTF_8.toString());
         String body = ViewUtils.render(Path.Template.SHOPPING_CARD, map);
         return body;
@@ -65,6 +64,9 @@ public class ShoppingCardController {
 
     public static String newShoppingCard(Request request, Response response) {
         String token = request.cookie("token");
+        if (token == null) {
+            token = request.queryParams("token");
+        }
         if (token == null || token.trim().isEmpty()) {
             response.redirect("/shc?not_user_err=1");
             return null;

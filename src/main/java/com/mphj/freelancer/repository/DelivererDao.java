@@ -40,9 +40,11 @@ public class DelivererDao extends BaseDao<Deliverer> {
 
         Query query = session.createQuery("DELETE Deliverer D WHERE D.id = :id");
         query.setParameter("id", id);
-        query.executeUpdate();
-
-        session.getTransaction().commit();
+        try {
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
     }
 
 
@@ -52,8 +54,37 @@ public class DelivererDao extends BaseDao<Deliverer> {
         Query query = session.createQuery("FROM Deliverer D WHERE D.id = :id");
         query.setMaxResults(1);
         query.setParameter("id", id);
-        Deliverer user = (Deliverer) query.getSingleResult();
-        session.getTransaction().commit();
-        return user;
+
+        Deliverer deliverer = null;
+
+        try {
+            deliverer = (Deliverer) query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+
+        return deliverer;
+    }
+
+
+    public Deliverer findByPhoneAndPassword(String phone, String password) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM Deliverer D WHERE D.phone = :phone AND D.password = :password");
+        query.setMaxResults(1);
+        query.setParameter("phone", phone);
+        query.setParameter("password", password);
+
+        Deliverer deliverer = null;
+
+        try {
+            deliverer = (Deliverer) query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
+
+        return deliverer;
     }
 }

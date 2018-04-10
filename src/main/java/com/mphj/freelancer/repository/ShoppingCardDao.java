@@ -46,4 +46,24 @@ public class ShoppingCardDao extends BaseDao<ShoppingCard> {
         session.getTransaction().commit();
         return user;
     }
+
+    public List<ShoppingCard> findByUserId(int userId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM ShoppingCard S WHERE S.userId = :user_id");
+        query.setParameter("user_id", userId);
+        List<ShoppingCard> shoppingCards = query.getResultList();
+        session.getTransaction().commit();
+        return shoppingCards;
+    }
+
+    public List<ShoppingCard> findNDByDelivererId(int delivererId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("FROM ShoppingCard S WHERE S.delivererId = :deliverer_id AND S.isDelivererd = 0");
+        query.setParameter("deliverer_id", delivererId);
+        List<ShoppingCard> shoppingCards = query.getResultList();
+        session.getTransaction().commit();
+        return shoppingCards;
+    }
 }
