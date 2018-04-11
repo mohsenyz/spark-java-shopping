@@ -13,26 +13,38 @@
 </head>
 <body class="rtl">
     #parse("/template/client_header.vm")
-<div class="container-fluid mh-100vh">
-    <div class="row">
+    #if ($isMobile)
+    <div class="container-fluid mh-100vh pt-5 mt-0">
+    #else
+    <div class="container-fluid mh-100vh">
+    #end    <div class="row">
         <div class="col col-12">
             #if ($shoppingcards.size() > 0)
                 <ul class="list-group w-100 m-4">
                     #foreach($shoppingcard in $shoppingcards)
                         <li class="list-group-item p-0 border border-primary">
+                            #if ($isMobile)
+                            <div class="col col-12">
+                            #end
                             <span class="float-right p-2">
                                 سبد خرید $shoppingcard.getId()
                             </span>
+                            #if ($isMobile)
+                            </div>
+                            #end
+                            #if ($isMobile)
+                            <div class="col col-12">
+                            #end
                             <button class="btn btn-success float-left p-2" style="border-radius: 0 !important;">
                                 <i class="fas-m fas fa-map ml-1"></i>
                                 $shoppingcard.getPrice()
                                 تومان
                             </button>
                             #if(!$shoppingcard.isDelivered())
-                            <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
+                            <a href="/user/shc/$shoppingcard.getId()/done" class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
                                 <i class="fas-m fas fa-map ml-1"></i>
                                 گزارش رسید
-                            </button>
+                            </a>
                             #end
                             #if($shoppingcard.getDeliverer())
                             <button class="btn btn-primary float-left p-2" style="border-radius: 0 !important;">
@@ -40,11 +52,14 @@
                                 پست کننده :‌
                                 $shoppingcard.getDeliverer().getName()
                             </button>
-                                <button class="btn btn-info float-left p-2" style="border-radius: 0 !important;">
+                                <button class="btn btn-info float-left p-2 show-on-map" style="border-radius: 0 !important;">
                                     <i class="fas-m fas fa-map ml-1"></i>
                                     مشاهده روی نقشه
                                 </button>
                             #end
+                        #if ($isMobile)
+                        </div>
+                        #end
                         </li>
                         <li class="list-group-item bg-dark text-white mb-2">
                             $shoppingcard.getAddress()
@@ -56,12 +71,22 @@
             #end
         </div>
     </div>
+    <br/><br/>
 </div>
 
     #parse("/template/footer.vm")
     #include("/template/client_scripts.html")
     <script>
-
+        $(document).ready(function () {
+            $(".show-on-map").click(function (e) {
+                try {
+                    JSInterface.showMap();
+                    return;
+                } catch (e) {
+                }
+                window.location.href = "/user/map";
+            });
+        });
     </script>
 </body>
 </html>

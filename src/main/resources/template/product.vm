@@ -14,9 +14,44 @@
 </head>
 <body class="rtl">
     #parse("/template/client_header.vm")
-<div class="container-fluid mh-100vh" id="product-container">
+    #if ($isMobile)
+    <div class="container-fluid mh-100vh pt-5 mt-0">
+    #else
+    <div class="container-fluid mh-100vh">
+    #end
     <div class="row">
-        <div class="col col-md-7 pt-3 pr-4 col-12">
+        <div class="col col-md-5 pt-3 pl-4 float-none float-md-left" dir="ltr">
+            <div class="card">
+                <div class="flexslider mb-0">
+                    <ul class="slides">
+                        <li data-thumb="image/test.jpg">
+                            <img src="$product.getMainImage()"/>
+                        </li>
+                        #if($product.getSlider1Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider1Image()"/>
+                            </li>
+                        #end
+                        #if($product.getSlider2Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider2Image()"/>
+                            </li>
+                        #end
+                        #if($product.getSlider3Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider3Image()"/>
+                            </li>
+                        #end
+                        #if($product.getSlider4Image())
+                            <li data-thumb="image/test.jpg">
+                                <img src="$product.getSlider4Image()"/>
+                            </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-7 pt-3 pr-4 col-12 float-none float-md-right">
             <div class="card w-100">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -109,38 +144,8 @@
                 </div>
             </div>
         </div>
-        <div class="col col-md-5 pt-3 pl-4" dir="ltr">
-            <div class="card">
-                <div class="flexslider mb-0">
-                    <ul class="slides">
-                        <li data-thumb="image/test.jpg">
-                            <img src="$product.getMainImage()"/>
-                        </li>
-                        #if($product.getSlider1Image())
-                            <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider1Image()"/>
-                            </li>
-                        #end
-                        #if($product.getSlider2Image())
-                            <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider2Image()"/>
-                            </li>
-                        #end
-                        #if($product.getSlider3Image())
-                            <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider3Image()"/>
-                            </li>
-                        #end
-                        #if($product.getSlider4Image())
-                            <li data-thumb="image/test.jpg">
-                                <img src="$product.getSlider4Image()"/>
-                            </li>
-                        #end
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
+    <br/><br/><br/>
 </div>
 
     #parse("/template/footer.vm")

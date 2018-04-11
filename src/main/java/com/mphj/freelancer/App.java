@@ -14,6 +14,9 @@ import com.mphj.freelancer.utils.HibernateUtils;
 import com.mphj.freelancer.utils.Redis;
 import com.qmetric.spark.authentication.AuthenticationDetails;
 import com.qmetric.spark.authentication.BasicAuthenticationFilter;
+import spark.Filter;
+import spark.Request;
+import spark.Response;
 
 import static spark.Spark.*;
 
@@ -36,6 +39,15 @@ public class App {
                         new AuthenticationDetails(AppConfig.ADMIN_USERNAME, AppConfig.ADMIN_PASSWORD)
                 )
         );
+
+        before("/*", new Filter() {
+            @Override
+            public void handle(Request request, Response response) throws Exception {
+                if (request != null && request.queryParams("token") != null) {
+                    response.cookie("token", request.queryParams("token"), 60 * 60 * 60);
+                }
+            }
+        });
 
         get("/", IndexController::index);
         get("/upload/:filename", IndexController::serveUploadFiles);
@@ -68,6 +80,7 @@ public class App {
         get("/user/new", UserController::newUser);
         get("/user/profile", UserController::viewShoppingCards);
         get("/user/map", UserController::viewMap);
+        get("/user/shc/:id/done", ShoppingCardController::setShoppingCardDone);
     }
 
 

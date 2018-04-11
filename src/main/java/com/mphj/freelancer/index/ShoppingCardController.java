@@ -164,4 +164,50 @@ public class ShoppingCardController {
         return null;
     }
 
+
+    public static String setShoppingCardDone(Request request, Response response) {
+        String token = request.cookie("token");
+        if (token == null) {
+            token = request.queryParams("token");
+        }
+        if (token == null || token.trim().isEmpty()) {
+            response.redirect("/user/profile?not_user_err=1");
+            return null;
+        }
+
+        UserDao userDao = new UserDao(HibernateUtils.getSessionFactory());
+        User user = null;
+        try {
+            user = userDao.findByToken(token);
+        } catch (Exception e) {
+            // Bad token
+        }
+        if (user == null) {
+            response.redirect("/user/profile?bad_token=1");
+            return null;
+        }
+
+        int shcId = 0;
+        try {
+            shcId = Integer.parseInt(request.params("id"));
+        } catch (Exception e) {
+            response.redirect("/user/profile?bad_id=1");
+            return null;
+        }
+
+        if (shcId == 0) {
+            response.redirect("/user/profile?bad_id=1");
+            return null;
+        }
+
+        ShoppingCardDao shoppingCardDao = new ShoppingCardDao(HibernateUtils.getSessionFactory());
+
+        ShoppingCard shoppingCard = shoppingCardDao.findById(shcId);
+        shoppingCard.setDelivered(true);
+        shoppingCardDao.save(shoppingCard);
+        response.redirect("/user/profile?success=1");
+        return null;
+
+    }
+
 }

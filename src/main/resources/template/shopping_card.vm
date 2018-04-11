@@ -13,8 +13,11 @@
 </head>
 <body class="rtl">
     #parse("/template/client_header.vm")
-<div class="container-fluid mh-100vh">
-    #if ($products.size() == 0)
+    #if ($isMobile)
+    <div class="container-fluid mh-100vh pt-5 mt-0">
+    #else
+    <div class="container-fluid mh-100vh">
+    #end    #if ($products.size() == 0)
         <div class="row">
             <div class="alert alert-info w-100 p-4 m-5">
                 <span>هیچ موردی در سبد خرید شما وجود ندارد</span>
@@ -132,6 +135,7 @@
             </div>
         </div>
     </div>
+    <br/><br/><br/>
 </div>
 
     #parse("/template/footer.vm")

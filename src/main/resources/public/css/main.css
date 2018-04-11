@@ -42,6 +42,7 @@ span, div, textarea, input, button, i, b, s, h1, h2, h3, h4, h5, h6 {
 .container-fluid {
     z-index: 700 !important;
     padding: 101px 0px 0px 0px;
+    overflow-x: hidden;
 }
 
 #main-carousel {
