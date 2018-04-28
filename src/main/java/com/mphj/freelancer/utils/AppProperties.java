@@ -37,6 +37,12 @@ public class AppProperties {
 
 
     public static Properties getProp() {
+        for (String property : prop.stringPropertyNames()) {
+            String envProperty = System.getenv(property);
+            if (envProperty != null && !envProperty.trim().isEmpty()) {
+                prop.setProperty(property, envProperty);
+            }
+        }
         return prop;
     }
 }
