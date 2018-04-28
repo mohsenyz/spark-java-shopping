@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd061887-11b4-4cdb-bdbf-4fcd5b5a1a2a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/index/ComplaintsController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/index/PageController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/index/admin/AdminPageController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/repository/ComplaintDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/repository/models/Complaint.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/template/admin_editpage.vm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/template/complaints.vm" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/template/view_page.vm" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/App.java" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/App.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/utils/HibernateUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/utils/HibernateUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/utils/Path.java" afterPath="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/utils/Path.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/template/client_header.vm" afterPath="$PROJECT_DIR$/src/main/resources/template/client_header.vm" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.config.properties" afterPath="$PROJECT_DIR$/src/main/resources/.config.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -109,11 +98,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client_header.vm" pinned="false" current-in-tab="true">
+      <file leaf-file-name="client_header.vm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/template/client_header.vm">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
               <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".config.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/.config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -169,16 +178,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="complaints.vm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/template/complaints.vm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="39" column="43" lean-forward="false" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -667,7 +666,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/template/admin_products.vm" />
         <option value="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/index/admin/AdminGiftCardsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mphj/freelancer/repository/models/GiftCard.java" />
         <option value="$PROJECT_DIR$/src/main/resources/template/admin_giftcards.vm" />
@@ -718,6 +716,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/template/view_page.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/template/admin_editpage.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/template/client_header.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/.config.properties" />
       </list>
     </option>
   </component>
@@ -1266,7 +1265,7 @@
       <workItem from="1524926766835" duration="1201000" />
       <workItem from="1524928559480" duration="1852000" />
       <workItem from="1524930490659" duration="1773000" />
-      <workItem from="1524932308351" duration="986000" />
+      <workItem from="1524932308351" duration="1786000" />
     </task>
     <task id="LOCAL-00001" summary="Project inited">
       <created>1520716406336</created>
@@ -1570,7 +1569,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215383000" />
+    <option name="totallyTimeSpent" value="216183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="742" extended-state="6" />
@@ -1591,9 +1590,9 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31493506" sideWeight="0.46363637" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31493506" sideWeight="0.46363637" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3116883" sideWeight="0.47878787" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3116883" sideWeight="0.47878787" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3969697" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23030303" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1863,20 +1862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/.config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="53" lean-forward="false" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/template/user_shoppingcards.vm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -2113,6 +2098,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/.config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
           <folding />
         </state>
       </provider>
