@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Carousel Template for Bootstrap</title>
+
+    #include("/template/cl_header_resources.html")
+</head>
+<body class="rtl">
+    #parse("/template/client_header.vm")
+    #if ($isMobile)
+    <div class="container-fluid mh-100vh pt-5 mt-0">
+    #else
+    <div class="container-fluid mh-100vh">
+    #end
+    <div class="row">
+        <div class="col col-12 p-4">
+            <h2>ثبت شکایات</h2>
+            <form method="post" action="/complaints">
+            <div class="col col-12">
+                <div class="form-group">
+                    <label>موضوع</label>
+                    <input name="subject" class="form-control" id="phone" placeholder="موضوع">
+                </div>
+            </div>
+            <div class="col col-12">
+                <div class="form-group">
+                    <label>شماره تماس یا ایمیل</label>
+                    <input name="com" class="form-control" id="phone" placeholder="شماره تماس یا ایمیل">
+                </div>
+            </div>
+            <div class="col col-12">
+                <div class="form-group">
+                    <label>شرح شکایت</label>
+                    <textarea name="content" class="form-control" placeholder="شرح شکایت"></textarea>
+                </div>
+            </div>
+            <div class="col col-12">
+                <button type="submit" class="btn btn-primary float-left">ثبت شکایت</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    #parse("/template/footer.vm")
+    #include("/template/client_scripts.html")
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+</body>
+</html>

@@ -33,6 +33,7 @@ public class HibernateUtils {
                 sources.addAnnotatedClass(User.class);
                 sources.addAnnotatedClass(GiftCard.class);
                 sources.addAnnotatedClass(Deliverer.class);
+                sources.addAnnotatedClass(Complaint.class);
                 Metadata metadata = sources.getMetadataBuilder().build();
                 sessionFactory = metadata.getSessionFactoryBuilder().build();
             } catch (Exception e) {

@@ -15,7 +15,16 @@
                     <a class="nav-link" href="/">خانه </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">تماس با ما</a>
+                    <a class="nav-link" href="/page?page=contactus&title=تماس%20با%20ما">تماس با ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/page?page=about&title=درباره%20ی%20ما">درباره ی ما</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/page?page=rules&title=قوانین">قوانین</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/complaints">ثبت شکایات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="login-btn">ورود یا ثبت نام</a>

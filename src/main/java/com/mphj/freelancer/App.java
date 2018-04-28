@@ -1,10 +1,7 @@
 package com.mphj.freelancer;
 
 import com.mphj.freelancer.config.AppConfig;
-import com.mphj.freelancer.index.IndexController;
-import com.mphj.freelancer.index.ProductsListController;
-import com.mphj.freelancer.index.ShoppingCardController;
-import com.mphj.freelancer.index.UserController;
+import com.mphj.freelancer.index.*;
 import com.mphj.freelancer.index.admin.*;
 import com.mphj.freelancer.mocks.MockedRLocalCache;
 import com.mphj.freelancer.sockets.DelivererWebSocket;
@@ -72,6 +69,9 @@ public class App {
         get("/admin/shoppingcards", AdminShoppingCardController::index);
         get("/admin/shoppingcards/deliverer", AdminShoppingCardController::setDeliverer);
 
+        get("/admin/editpage", AdminPageController::view);
+        post("/admin/editpage", AdminPageController::edit);
+
         get("/admin/deliverers", AdminDeliverersController::index);
         post("/admin/deliverers", AdminDeliverersController::postDeliverer);
         delete("/admin/deliverers", AdminDeliverersController::deleteDeliverer);
@@ -81,6 +81,11 @@ public class App {
         get("/user/profile", UserController::viewShoppingCards);
         get("/user/map", UserController::viewMap);
         get("/user/shc/:id/done", ShoppingCardController::setShoppingCardDone);
+
+        get("/complaints", ComplaintsController::index);
+        post("/complaints", ComplaintsController::post);
+
+        get("/page", PageController::view);
     }
 
 

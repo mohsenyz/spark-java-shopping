@@ -9,6 +9,7 @@ public class Path {
 
     public static class Dir {
         public static final File UPLOAD_DIR = Paths.get("src", "main", "resources", "public", "upload").toFile();
+        public static final File PAGE_DIR = Paths.get("src", "main", "resources").toFile();
     }
 
     public static class Template {
@@ -26,6 +27,9 @@ public class Path {
         public static final String SHOPPING_CARD = TEMPLATE_PATH + "shopping_card.vm";
         public static final String USER_SHOPPING_CARDS = TEMPLATE_PATH + "user_shoppingcards.vm";
         public static final String USER_MAP = TEMPLATE_PATH + "user_map.vm";
+        public static final String USER_COMPLAINTS = TEMPLATE_PATH + "complaints.vm";
+        public static final String USER_VIEW_PAGE = TEMPLATE_PATH + "view_page.vm";
+        public static final String ADMIN_EDIT_PAGE = TEMPLATE_PATH + "admin_editpage.vm";
 
     }
 
