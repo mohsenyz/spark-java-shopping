@@ -15,13 +15,17 @@ import spark.Response;
 import spark.utils.IOUtils;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public class AdminProductsController {
 
@@ -97,12 +101,25 @@ public class AdminProductsController {
     public static String postProduct(Request request, Response response) {
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 
-        String name = request.queryParams("name");
-        String description = request.queryParams("description");
-        String price = request.queryParams("price");
-        String off = request.queryParams("off");
-        String count = request.queryParams("count");
-        String category = request.queryParams("category");
+        try {
+            request.raw().getParts().forEach(new Consumer<Part>() {
+                @Override
+                public void accept(Part part) {
+                    System.out.println(part.getName());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
+        String name = request.queryParams("name").trim();
+        String description = request.queryParams("description").trim();
+        String price = request.queryParams("price").trim();
+        String off = request.queryParams("off").trim();
+        String count = request.queryParams("count").trim();
+        String category = request.queryParams("category").trim();
 
         int priceValue = 0;
         int offValue = 0;
@@ -131,11 +148,12 @@ public class AdminProductsController {
         try {
             categoryValue = Integer.parseInt(category);
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println("Invalid number");
         }
 
         if (categoryValue == 0) {
-            response.redirect("/admin/products/new");
+            response.redirect("/admin/products/new?bad_cat=1");
             return null;
         }
 
@@ -206,15 +224,15 @@ public class AdminProductsController {
         product.setDescription(description);
         product.setCount(countValue);
         if (mainImage != null)
-            product.setMainImage(mainImage);
+            product.setMainImage("/upload/" + mainImage);
         if (image1 != null)
-            product.setSlider1Image(image1);
+            product.setSlider1Image("/upload/" + image1);
         if (image2 != null)
-            product.setSlider2Image(image2);
+            product.setSlider2Image("/upload/" + image2);
         if (image3 != null)
-            product.setSlider3Image(image3);
+            product.setSlider3Image("/upload/" + image3);
         if (image4 != null)
-            product.setSlider4Image(image4);
+            product.setSlider4Image("/upload/" + image4);
         product.setCreatedAt(System.currentTimeMillis() / 1000l);
         product.setCategoryId(categoryValue);
         productDao.save(product);

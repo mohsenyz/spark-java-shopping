@@ -8,25 +8,27 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">صفحه ی اصلی </a>
+                    <a class="nav-link" href="/admin/">صفحه ی اصلی </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">آمار</a>
+                    <a class="nav-link" href="/admin/shoppingcards">آمار</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">مدیریت پست کننده ها</a>
+                    <a class="nav-link" href="/admin/deliverers">مدیریت پست کننده ها</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">مدیریت محصولات</a>
+                    <a class="nav-link" href="/admin/products">مدیریت محصولات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">کارت های تخفیف</a>
+                    <a class="nav-link" href="/admin/giftcards">کارت های تخفیف</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories">مدیریت دسته بندی ها</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/products/new">ایجاد محصول جدید</a>
                 </li>
             </ul>
-            <button class="btn btn-primary my-2 my-sm-0 mr-4" type="submit">
-                ناحیه کاربری
-                <i class="fas fa-user fas-m"></i>
-            </button>
             <button class="btn btn-danger my-2 my-sm-0 mr-1" type="submit">
                 خروج
                 <i class="fas fa-power-off fas-m"></i>
