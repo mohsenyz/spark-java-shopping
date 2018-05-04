@@ -36,6 +36,9 @@ public class ShoppingCardController {
 
         }
 
+        int totalPrice = 0;
+        int priceWithoutOff = 0;
+
         ProductDao productDao = new ProductDao(HibernateUtils.getSessionFactory());
         List<Product> products = new ArrayList<>();
         for (ShoppingCardObject shoppingCardObject : shoppingCardObjects.values()) {
@@ -46,6 +49,8 @@ public class ShoppingCardController {
                 product.setMainImage("/image/test.jpg");
             }
             products.add(product);
+            totalPrice += product.getProductPrice().getActualPrice() * shoppingCardObject.getCount();
+            priceWithoutOff += product.getProductPrice().getPrice() * shoppingCardObject.getCount();
         }
 
         Map<String, Object> map = new HashMap<>();
@@ -53,6 +58,9 @@ public class ShoppingCardController {
 
         CategoryDao categoryDao = new CategoryDao(HibernateUtils.getSessionFactory());
         map.put("cats", categoryDao.getAll());
+
+        map.put("priceWithOff", totalPrice);
+        map.put("priceWithoutOff", priceWithoutOff);
 
         DeviceUtils.handleMobile(map, request);
 

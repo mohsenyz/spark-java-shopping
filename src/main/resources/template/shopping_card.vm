@@ -26,6 +26,16 @@
         </div>
     <div class="row" style="display: none;">
     #else
+        <div class="row">
+            <div class="col col-12">
+                <h4 class="text-center pt-3 mb-0">
+                    مبلغ قابل پرداخت
+                    <s style="color: #555; font-size: smaller; vertical-align: top;">$priceWithoutOff تومان</s>
+                    <b style="color: red; font-size: larger;">$priceWithOff</b>
+                    تومان
+                </h4>
+            </div>
+        </div>
     <div class="row">
     #end
     <div class="col col-12">
