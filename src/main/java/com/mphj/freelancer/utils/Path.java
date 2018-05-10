@@ -8,7 +8,14 @@ public class Path {
     public static final String TEMPLATE_PATH = "/template/";
 
     public static class Dir {
-        public static final File UPLOAD_DIR = Paths.get("src", "main", "resources", "public", "upload").toFile();
+        public static final File UPLOAD_DIR;
+        static {
+            if (AppProperties.getProp().getProperty("app.debug_mode").trim().equals("true")) {
+                UPLOAD_DIR = Paths.get("src", "main", "resources", "public", "upload").toFile();
+            } else {
+                UPLOAD_DIR = new File("/uploads");
+            }
+        }
         public static final File PAGE_DIR = Paths.get("src", "main", "resources").toFile();
     }
 

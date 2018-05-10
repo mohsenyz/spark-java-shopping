@@ -46,7 +46,7 @@ public class UserController {
         }
 
         user.setVerificationCode(RandomGenerator.randomNumeric(5));
-        // @TODO send code
+        Sms.sendSms(validatedPhone, user.getVerificationCode());
         user.setVerificationCodeTime(System.currentTimeMillis() / 1000l);
         userDao.save(user);
         return "200";
