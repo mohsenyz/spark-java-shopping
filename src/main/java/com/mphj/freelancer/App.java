@@ -31,11 +31,21 @@ public class App {
         staticFiles.location("/public");
 
         before(
-                "/admin*",
+                "/admin/*",
                 new BasicAuthenticationFilter(
                         new AuthenticationDetails(AppConfig.ADMIN_USERNAME, AppConfig.ADMIN_PASSWORD)
+
                 )
         );
+
+        before(
+                "/admin",
+                new BasicAuthenticationFilter(
+                        new AuthenticationDetails(AppConfig.ADMIN_USERNAME, AppConfig.ADMIN_PASSWORD)
+
+                )
+        );
+
 
         before("/*", new Filter() {
             @Override

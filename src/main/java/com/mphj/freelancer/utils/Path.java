@@ -9,14 +9,16 @@ public class Path {
 
     public static class Dir {
         public static final File UPLOAD_DIR;
+        public static final File PAGE_DIR;
         static {
             if (AppProperties.getProp().getProperty("app.debug_mode").trim().equals("true")) {
                 UPLOAD_DIR = Paths.get("src", "main", "resources", "public", "upload").toFile();
+                PAGE_DIR = Paths.get("src", "main", "resources").toFile();
             } else {
                 UPLOAD_DIR = new File("/uploads");
+                PAGE_DIR = new File("/pages");
             }
         }
-        public static final File PAGE_DIR = Paths.get("src", "main", "resources").toFile();
     }
 
     public static class Template {
